@@ -6,18 +6,28 @@ function Tweets(url) {
   this.url = url;
 }
 
+// get twitter json
 Tweets.prototype.getData = function() {
   $.ajax({
     url: this.url,
     context: this,
-    success: this.onSuccess,
+    success: this.parseData,
     error: this.onError
   });
 };
 
-Tweets.prototype.onSuccess = function(data) {
+// parse twitter json
+Tweets.prototype.parseData = function(data) {
+  
+  
+};
+
+//
+Tweets.prototype.sendCommand = function(data) {
+  
   $(window).trigger('Tweets:success', data);
 };
+
 
 Tweets.prototype.onError = function(jqXHR, textStatus, errorThrown) {
   console.log('tried to get twitter results via ajax and got: ' + textStatus);
@@ -35,6 +45,7 @@ function Logos() {
   ]
 }
 
+// get a random fresh logo
 Logos.prototype.getFresh = function() {
   /*
   var logo = _.find(this.list, function(logo){
@@ -45,6 +56,7 @@ Logos.prototype.getFresh = function() {
   return this.dir + logo.name;
 }
 
+// reset fresh status of logos
 Logos.prototype.reset = function() {
   
 }
