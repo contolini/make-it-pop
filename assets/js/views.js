@@ -1,10 +1,18 @@
+/**
+ * CanvasView controls logos on the canvas
+ * 
+ */
 function CanvasView(el) {
   this.$canvas = $(el);
   this.bindEvents();
+  this.numEffects = 0;    // number of effects that have been performed on the logo
 }
 
 CanvasView.prototype.bindEvents = function() {
-  $(window).on('DataModel:success', $.proxy(this.changeLogo(), this));
+  var self = this;
+  $(document).on('Tweets:success', function() {
+    $.proxy(self.changeLogo(), self);
+  });
 };
 
 CanvasView.prototype.updateLogo = function() {
@@ -15,9 +23,8 @@ CanvasView.prototype.updateLogo = function() {
 CanvasView.prototype.changeLogo = function() {
   var ctx = this.$canvas[0].getContext('2d'),
       logo = new Image();
-  logo.src = "/assets/images/logo_aa.png";
+  logo.src = MIP.logos.getFresh();
   logo.onload = function () {
-    ctx.drawImage(logo, 80, 20);
+    ctx.drawImage(logo, 80, 0);
   }
-  console.log("New logo has been drawn.");
 }
