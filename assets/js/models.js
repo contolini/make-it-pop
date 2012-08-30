@@ -9,7 +9,9 @@ function Tweets(url) {
 // get twitter json
 Tweets.prototype.getData = function() {
   $.ajax({
+    type: 'get',
     url: this.url,
+    dataType: 'json',
     context: this,
     success: this.parseData,
     error: this.onError
@@ -18,14 +20,26 @@ Tweets.prototype.getData = function() {
 
 // parse twitter json
 Tweets.prototype.parseData = function(data) {
+
+  var commands = {};
+  _.each(data, function(val, key) {
+    if (val.toLowerCase().match(/#bnc [accessories|coming]/g)) {
+      commands[key] = val;
+    }
+  });
   
+  // [pizzaz|timeless|jazz it up|futuristic|friendly|eco|hip|slick|artsy|in your face]
+  // @TODO need to somehow grap the word after #bnc and send it to sendCommand
+
+  console.log("success");
+  console.log(commands);
   
 };
 
 //
-Tweets.prototype.sendCommand = function(data) {
+Tweets.prototype.sendCommand = function(command) {
   
-  $(window).trigger('Tweets:success', data);
+  $(window).trigger('Tweets:success', command);
 };
 
 

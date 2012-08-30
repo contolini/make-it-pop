@@ -1,5 +1,7 @@
 <?php
 
+header('Content-type: application/json');
+
 //$last_response_id = file_get_contents('last_response.txt');
 $last_response_id = 1;
 
@@ -11,17 +13,13 @@ $isFirst = true;
 $lastTweet = end($tweets);
 reset($tweets);
 
-print "{";
+$arr = array();
 
 foreach($tweets as $tweet) {
 
-    $status = $tweet->text;
+    $status = str_replace('"', "'", $tweet->text);
     $author = $tweet->from_user;
-    echo '"' . $author . '":"' . $status . '"';
-    
-    if ($tweet->text !== $lastTweet->text) {
-      print ',';
-    }
+    $arr[$author] = $status;
     
     if ($isFirst) {
       $myFile = "last_response.txt";
@@ -34,6 +32,6 @@ foreach($tweets as $tweet) {
     
 }
 
-print "}";
+print json_encode($arr);
 
 ?>
