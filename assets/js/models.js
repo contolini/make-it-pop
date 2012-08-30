@@ -14,3 +14,5 @@ DataModel.prototype.getData = function() {
 DataModel.prototype.onSuccess = function(data) {
   $(window).trigger('DataModel:success', data);
 };
+
+console.log("hi");
