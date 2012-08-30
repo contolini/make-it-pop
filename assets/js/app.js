@@ -11,10 +11,10 @@ $(function() {
   MIP.canvasView = new CanvasView('canvas#main');
   
   $('#msg').click(function(){
-    $(document).trigger('Tweets:success');
+    $(window).trigger('Tweets:success');
   });
   
-  $(document).on('Tweets:success', function(){
+  $(window).on('Tweets:success', function(){
     console.log("Tweets:success event fired");
   });
 

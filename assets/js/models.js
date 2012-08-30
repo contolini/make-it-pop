@@ -9,15 +9,19 @@ function Tweets(url) {
 Tweets.prototype.getData = function() {
   $.ajax({
     url: this.url,
-    dataType: 'json',
     context: this,
-    success: this.onSuccess
+    success: this.onSuccess,
+    error: this.onError
   });
 };
 
 Tweets.prototype.onSuccess = function(data) {
-  $(document).trigger('Tweets:success', data);
+  $(window).trigger('Tweets:success', data);
 };
+
+Tweets.prototype.onError = function(jqXHR, textStatus, errorThrown) {
+  console.log('tried to get twitter results via ajax and got: ' + textStatus);
+}
 
 /**
  * Logos stores logo names and whether or not they've been used

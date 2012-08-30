@@ -10,7 +10,7 @@ function CanvasView(el) {
 
 CanvasView.prototype.bindEvents = function() {
   var self = this;
-  $(document).on('Tweets:success', function() {
+  $(window).on('Tweets:success', function() {
     $.proxy(self.changeLogo(), self);
   });
 };
