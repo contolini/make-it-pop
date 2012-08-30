@@ -1,4 +1,4 @@
-Make-It-Pop
+Make It Pop
 ===========
 
-Data Visualization for the 2012 Brand New Conference in NYC
+A Twitter visualization for the 2012 Brand New Conference after party in NYC
