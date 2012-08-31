@@ -31,7 +31,7 @@ Tweets.prototype.parseData = function(data) {
   // [pizzaz|timeless|jazz it up|futuristic|friendly|eco|hip|slick|artsy|in your face]
   // @TODO need to somehow grap the word after #bnc and send it to sendCommand
   
-  this.sendCommand('solarize');
+  this.sendCommand('sharpen');
 
   //console.log(commands);
   
@@ -54,7 +54,7 @@ Tweets.prototype.onError = function(jqXHR, textStatus, errorThrown) {
  * 
  */
 function Logos() {
-  this.dir = '/assets/images/';
+  this.dir = '/assets/images/logos/';
   this.list = [
     {name: 'logo_aa.png', fresh: 1},
     {name: 'logo_att.png', fresh: 1},
