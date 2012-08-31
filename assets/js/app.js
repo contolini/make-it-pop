@@ -1,5 +1,8 @@
+/**
+ * Make it pop!
+ * 
+ */
 var MIP = MIP || {};
-
 
 $(function() {
 
@@ -18,8 +21,6 @@ $(function() {
     console.log("Tweets:newEffect event fired");
   });
   
-  console.log(MIP.canvasView.canvas.width);
-
 });
 
 
