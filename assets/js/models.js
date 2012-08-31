@@ -29,18 +29,78 @@ Tweets.prototype.parseData = function(data) {
   });
   
   // [pizzaz|timeless|jazz it up|futuristic|friendly|eco|hip|slick|artsy|in your face]
-  // @TODO need to somehow grap the word after #bnc and send it to sendCommand
+  // @TODO need to somehow grab the word after #bnc and send it to sendCommand
   
-  this.sendCommand('sharpen');
+  this.chooseEffect('timeless');
 
   //console.log(commands);
   
 };
 
-//
-Tweets.prototype.sendCommand = function(command) {
+// triggers command event
+Tweets.prototype.chooseEffect = function(command) {
   
-  $(window).trigger('Tweets:newCommand', command);
+  var commands = [];
+  
+  switch (command) {
+  
+    case "pizaaz":
+      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      break;
+      
+    case "timeless":
+      
+      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      break;
+      
+    case "jazz it up":
+      
+      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      break;
+      
+    case "futuristic":
+      
+      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      break;
+      
+    case "friendly":
+      
+      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      break;
+      
+    case "eco":
+      
+      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      break;
+      
+    case "hip":
+      
+      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      break;
+      
+    case "slick":
+      
+      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      break;
+    
+    case "artsy":
+    
+      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      break;
+      
+    case "in your face":
+    
+      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      break;
+  
+  }
+  
+};
+
+// triggers command event
+Tweets.prototype.triggerEffect = function(command) {
+  
+  $(window).trigger('Tweets:newEffect', command);
   
 };
 

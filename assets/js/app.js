@@ -7,16 +7,18 @@ $(function() {
   
   MIP.logos = new Logos();
 
-  MIP.canvasView = new CanvasView('canvas#main');
+  MIP.canvasView = new CanvasView('#main canvas');
   MIP.canvasView.initLogo();
   
   $('#msg').click(function(){
     MIP.tweets.getData();
   });
   
-  $(window).on('Tweets:newCommand', function(){
-    console.log("Tweets:newCommand event fired");
+  $(window).on('Tweets:newEffect', function(){
+    console.log("Tweets:newEffect event fired");
   });
+  
+  console.log(MIP.canvasView.canvas.width);
 
 });
 

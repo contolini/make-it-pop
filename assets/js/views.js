@@ -11,7 +11,7 @@ function CanvasView(el) {
 
 CanvasView.prototype.bindEvents = function() {
   var self = this;
-  $(window).on('Tweets:newCommand', null, function(event, command) {
+  $(window).on('Tweets:newEffect', null, function(event, command) {
     $.proxy(self.updateLogo(command), self);
     console.log(command);
   });
@@ -56,11 +56,11 @@ CanvasView.prototype.updateLogo = function(command) {
         var logo = Pixastic.process(img, "pointillize", {radius:5, density:1.5, noise:1.0, transparent:false});
         break;
         
-      case 'posterize': // super slow and cpu intensive
+      case 'posterize':
         var logo = Pixastic.process(img, "posterize", {levels:2});
         break;
         
-      case 'sepia': // super slow and cpu intensive
+      case 'sepia':
         var logo = Pixastic.process(img, "sepia");
         break;
         
@@ -121,7 +121,9 @@ CanvasView.prototype.redrawLogo = function(logo) {
   this.currentLogoImg = logo;
   this.context.setTransform(1, 0, 0, 1, 0, 0);
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  this.context.drawImage(logo, 0, 0);
+  var x = (this.canvas.width / 2) - (logo.width / 2);
+  var y = (this.canvas.height / 2) - (logo.height / 2)
+  this.context.drawImage(logo, x, y);
 };
 
 CanvasView.prototype.changeLogo = function() {

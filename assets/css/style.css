@@ -1,3 +1,11 @@
-.blue {
-  background-color: blue;
+body {
+  background-color: #ccc;
+}
+
+section#main {
+  text-align: center;
+}
+
+canvas {
+  margin: 0 auto;
 }
