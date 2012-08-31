@@ -31,7 +31,7 @@ Tweets.prototype.parseData = function(data) {
   // [pizzaz|timeless|jazz it up|futuristic|friendly|eco|hip|slick|artsy|in your face]
   // @TODO need to somehow grap the word after #bnc and send it to sendCommand
   
-  this.sendCommand('desaturate');
+  this.sendCommand('mosaic');
 
   //console.log(commands);
   
