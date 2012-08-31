@@ -52,8 +52,20 @@ CanvasView.prototype.updateLogo = function(command) {
         logo = Pixastic.process(logo, "emboss", {strength:10,greyLevel:200,direction:"topleft",blend:true});
         break;
         
-      case 'mosaic':
-        var logo = Pixastic.process(img, "mosaic", {blockSize:50});
+      case 'pointillize': // super slow and cpu intensive
+        var logo = Pixastic.process(img, "pointillize", {radius:5, density:1.5, noise:1.0, transparent:false});
+        break;
+        
+      case 'posterize': // super slow and cpu intensive
+        var logo = Pixastic.process(img, "posterize", {levels:2});
+        break;
+        
+      case 'sepia': // super slow and cpu intensive
+        var logo = Pixastic.process(img, "sepia");
+        break;
+        
+      case 'solarize': // kinda makes it dark and inverted colors
+        var logo = Pixastic.process(img, "solarize");
         break;
         
       case 'brightness':
@@ -62,6 +74,13 @@ CanvasView.prototype.updateLogo = function(command) {
         
       case 'invert':
         var logo = Pixastic.process(img, "invert");
+        break;
+        
+      case 'sharpen': // futuristic outline
+        var logo = img;
+        for (var c = 0; c < 5; c++) {
+          logo = Pixastic.process(logo, "sharpen", {amount:1});
+        }
         break;
         
       case 'flipv':
