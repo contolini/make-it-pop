@@ -14,9 +14,8 @@ function CanvasView(el) {
  */
 CanvasView.prototype.bindEvents = function() {
   var self = this;
-  $(window).on('Tweets:newEffect', null, function(event, command) {
-    $.proxy(self.updateLogo(command), self);
-    //console.log(command);
+  $(window).on('Tweets:newEffect', null, function(event, tweet, effect) {
+    $.proxy(self.updateLogo(effect), self);
   });
 };
 
@@ -56,7 +55,7 @@ CanvasView.prototype.updateLogo = function(command) {
         logo = Pixastic.process(img, "desaturate", {average : false});
         break;
         
-      case 'blur':
+      case 'blur': // @avoid this pushes pixels together and ruins logos with thin lines
         logo = Pixastic.process(img, "blurfast", {amount:0.3});
         self.redrawLogo(logo);
         break;
@@ -67,7 +66,7 @@ CanvasView.prototype.updateLogo = function(command) {
         self.redrawLogo(logo);
         break;
         
-      case 'pointillize': // super slow and cpu intensive
+      case 'pointillize': // @avoid super slow and cpu intensive
         logo = Pixastic.process(img, "pointillize", {radius:5, density:1.5, noise:1.0, transparent:false});
         self.redrawLogo(logo);
         break;
@@ -290,8 +289,8 @@ function NotiView() {
  */
 NotiView.prototype.bindEvents = function() {
   var self = this;
-  $(window).on('Tweets:newEffect', null, function(event, message) {
-    $.proxy(self.addNotification(message), self);
+  $(window).on('Tweets:newEffect', null, function(event, tweet, effect) {
+    $.proxy(self.addNotification(tweet), self);
   });
 };
 
@@ -299,33 +298,23 @@ NotiView.prototype.bindEvents = function() {
  * Add Gritter notification
  * 
  */
-NotiView.prototype.addNotification = function(message) {
+NotiView.prototype.addNotification = function(tweet) {
   $.gritter.add({
-      // (string | mandatory) the heading of the notification
-      title: 'This is a regular notice!',
-      // (string | mandatory) the text inside the notification
-      text: 'This will fade out after a certain amount of time.',
-      // (string | optional) the image to display on the left
-      image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
-      // (bool | optional) if you want it to fade out on its own or just sit there
+      title: "Client request!",
+      text: tweet.username + " wants it " + tweet.command,
+      image: tweet.avatar,
       sticky: false, 
-      // (int | optional) the time you want it to be alive for before fading out (milliseconds)
       time: 5000,
-      // (string | optional) the class name you want to apply directly to the notification for custom styling
       class_name: 'my-class',
-            // (function | optional) function called before it opens
       before_open: function(){
     
       },
-      // (function | optional) function called after it opens
       after_open: function(e){
     
       },
-      // (function | optional) function called before it closes
       before_close: function(e, manual_close){
     
       },
-      // (function | optional) function called after it closes
       after_close: function(){
     
       }

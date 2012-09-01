@@ -9,19 +9,19 @@ $(function() {
   MIP.tweets = new Tweets('/app/twitter/tweets.php');
   
   MIP.logos = new Logos();
-  MIP.logos.getLogos();
 
   MIP.canvasView = new CanvasView('#main canvas');
   MIP.canvasView.initLogo();
   
   MIP.notiView = new NotiView();
   
-  $('#msg').click(function(){
+  $('button').click(function(){
     MIP.tweets.getData();
   });
   
-  $(window).on('Tweets:newEffect', function(){
-    //console.log("Tweets:newEffect event fired");
+  $(window).on('Tweets:newEffect', function(event, tweet, effect){
+    //console.log(tweet);
+    //console.log(effect);
   });
   
 });

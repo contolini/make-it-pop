@@ -4,7 +4,6 @@
  */
 function Tweets(url) {
   this.url = url;
-  this.commands = ['pizzaz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face'];
 }
 
 // get twitter json
@@ -22,87 +21,101 @@ Tweets.prototype.getData = function() {
 // parse twitter json
 Tweets.prototype.parseData = function(data) {
   
-  var regex = new RegExp("#bnc [" + this.commands.join('|') + "]", "i");
+  /* I switched to regex'ing in php to keep things easier on the client
+  var regex = new RegExp("#bnc (" + this.commands.join('|') + ")", "i");
   var commands = {};
   _.each(data, function(val, key) {
     if (val.toLowerCase().match(regex)) {
       commands[key] = val;
     }
   });
+  */
   
-  // [pizzaz|timeless|jazz it up|futuristic|friendly|eco|hip|slick|artsy|in your face]
-  // @TODO need to regex for one of the above after #bnc and send it to chooseEffect
-  // @TODO send author so we can grab his pic for notification
+  //console.log(data);return;
   
-  this.chooseEffect('twitter_username', 'timeless');
+  if (data[0]['error']) {
+    console.log(data[0]['error']);
+  }
   
+  var self = this;
+  
+  _.each(data, function(val, key) {
+    self.chooseEffect(val);
+  });
+    
 };
 
 // triggers command event
-Tweets.prototype.chooseEffect = function(author, command) {
+Tweets.prototype.chooseEffect = function(tweet) {
   
-  var commands = [];
+  var effects = [];
   
-  switch (command) {
+  switch (tweet.command) {
   
     case "pizaaz":
-      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
       break;
       
     case "timeless":
-      commands = ['bw', 'neon', 'galaxy', 'sharpen', 'noise'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
       break;
       
     case "jazz it up":
-      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
       break;
       
     case "futuristic":
-      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
       break;
       
     case "friendly":
-      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
       break;
       
     case "eco":
-      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
       break;
       
     case "hip":
-      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
       break;
       
     case "slick":
-      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
       break;
     
     case "artsy":
-      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
       break;
       
     case "in your face":
-      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
+      break;
+      
+    default:
+      effects = ['bw', 'neon', 'galaxy', 'sharpen', 'noise'];
       break;
   
   }
   
-  var selectedCommand = commands[Math.floor(Math.random()*commands.length)];
-  this.triggerEffect(selectedCommand);
+  var selectedEffect = effects[Math.floor(Math.random()*effects.length)];
+  this.triggerEffect(tweet, selectedEffect);
   
 };
 
 // triggers command event
-Tweets.prototype.triggerEffect = function(command) {
+Tweets.prototype.triggerEffect = function(tweet, effect) {
   
-  $(window).trigger('Tweets:newEffect', command);
+  var data = [tweet, effect];
+  
+  $(window).trigger('Tweets:newEffect', data);
   MIP.logos.numEffects++;
   
 };
 
 
 Tweets.prototype.onError = function(jqXHR, textStatus, errorThrown) {
-  console.log('tried to get twitter results via ajax and got: ' + textStatus);
+  console.log('Tried to get twitter results via ajax and got: ' + errorThrown);
 };
 
 /**
@@ -178,8 +191,8 @@ function Logos() {
  * 
  */
 Logos.prototype.setLogos = function() {
-  localStorage.removeItem('logos');
-  localStorage.setItem('logos', JSON.stringify(this.list));
+  localStorage.removeItem('MIP.logos');
+  localStorage.setItem('MIP.logos', JSON.stringify(this.list));
 };
 
 /**
@@ -187,7 +200,7 @@ Logos.prototype.setLogos = function() {
  * 
  */
 Logos.prototype.getLogos = function() {
-  var value = localStorage.getItem('logos');
+  var value = localStorage.getItem('MIP.logos');
   if (value) {
     console.log("Pulled logo data from local storage.");
     return JSON.parse(value);
@@ -207,8 +220,11 @@ Logos.prototype.getFresh = function() {
     return !item.used;
   });
   
-  console.log(logo);
-  
+  if (!logo) {
+    this.resetUsed();
+    logo = this.list[0];
+  }
+    
   this.markUsed(logo);
   
   //var logo = this.list[Math.floor(Math.random()*this.list.length)];
@@ -228,7 +244,14 @@ Logos.prototype.markUsed = function(logo) {
   
 };
 
-// reset fresh status of logos
-Logos.prototype.reset = function() {
+/**
+  * Reset used status of logos
+  * 
+  */
+Logos.prototype.resetUsed = function() {
+
+  _.each(this.list, function(val, key) {
+    val.used = 0;
+  });
   
 };
