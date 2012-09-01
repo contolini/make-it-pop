@@ -6,12 +6,15 @@ var MIP = MIP || {};
 
 $(function() {
 
-  MIP.tweets = new Tweets('/app/twitter.php');
+  MIP.tweets = new Tweets('/app/twitter/tweets.php');
   
   MIP.logos = new Logos();
+  MIP.logos.getLogos();
 
   MIP.canvasView = new CanvasView('#main canvas');
   MIP.canvasView.initLogo();
+  
+  MIP.notiView = new NotiView();
   
   $('#msg').click(function(){
     MIP.tweets.getData();
@@ -23,12 +26,11 @@ $(function() {
   
 });
 
-
-
-
-
-
-
+/**
+ * Debug functions
+ * 
+ */
+//localStorage.clear(); // erase logos from storage
 
 
 

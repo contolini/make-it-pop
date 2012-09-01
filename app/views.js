@@ -5,7 +5,6 @@
 function CanvasView(el) {
   this.canvas = $(el)[0];
   this.context = this.canvas.getContext('2d');
-  this.numEffects = 0;    // number of effects that have been performed on the logo
   this.bindEvents();
 }
 
@@ -31,7 +30,7 @@ CanvasView.prototype.initLogo = function() {
   img.src = MIP.logos.getFresh();
   img.onload = function () {
     self.redrawLogo(img);
-  }
+  };
 };
 
 /**
@@ -43,6 +42,9 @@ CanvasView.prototype.updateLogo = function(command) {
   var img = new Image();
   img.src = this.canvas.toDataURL();
   img.onload = function () {
+  
+    var logo;
+    
     switch (command) {
     
       /**
@@ -51,52 +53,52 @@ CanvasView.prototype.updateLogo = function(command) {
        */
        
       case 'desaturate':
-        var logo = Pixastic.process(img, "desaturate", {average : false});
+        logo = Pixastic.process(img, "desaturate", {average : false});
         break;
         
       case 'blur':
-        var logo = Pixastic.process(img, "blurfast", {amount:0.3});
+        logo = Pixastic.process(img, "blurfast", {amount:0.3});
         self.redrawLogo(logo);
         break;
         
       case 'noise':
-        var logo = Pixastic.process(img, "noise", {mono:true,amount:0.5,strength:0.5});
+        logo = Pixastic.process(img, "noise", {mono:true,amount:0.5,strength:0.5});
         logo = Pixastic.process(logo, "emboss", {strength:5,greyLevel:200,direction:"topleft",blend:true});
         self.redrawLogo(logo);
         break;
         
       case 'pointillize': // super slow and cpu intensive
-        var logo = Pixastic.process(img, "pointillize", {radius:5, density:1.5, noise:1.0, transparent:false});
+        logo = Pixastic.process(img, "pointillize", {radius:5, density:1.5, noise:1.0, transparent:false});
         self.redrawLogo(logo);
         break;
         
       case 'posterize':
-        var logo = Pixastic.process(img, "posterize", {levels:2});
+        logo = Pixastic.process(img, "posterize", {levels:2});
         self.redrawLogo(logo);
         break;
         
       case 'sepia':
-        var logo = Pixastic.process(img, "sepia");
+        logo = Pixastic.process(img, "sepia");
         self.redrawLogo(logo);
         break;
         
       case 'solarize': // kinda makes it dark and inverted colors
-        var logo = Pixastic.process(img, "solarize");
+        logo = Pixastic.process(img, "solarize");
         self.redrawLogo(logo);
         break;
         
       case 'brightness':
-        var logo = Pixastic.process(img, "brightness", {brightness:80,contrast:0.5});
+        logo = Pixastic.process(img, "brightness", {brightness:80,contrast:0.5});
         self.redrawLogo(logo);
         break;
         
       case 'invert':
-        var logo = Pixastic.process(img, "invert");
+        logo = Pixastic.process(img, "invert");
         self.redrawLogo(logo);
         break;
         
       case 'sharpen': // futuristic outline
-        var logo = img;
+        logo = img;
         for (var c = 0; c < 5; c++) {
           logo = Pixastic.process(logo, "sharpen", {amount:1});
         }
@@ -104,24 +106,24 @@ CanvasView.prototype.updateLogo = function(command) {
         break;
         
       case 'flipv':
-        var logo = Pixastic.process(img, "flipv");
+        logo = Pixastic.process(img, "flipv");
         self.redrawLogo(logo);
         break;
         
       case 'fliph':
-        var logo = Pixastic.process(img, "fliph");
+        logo = Pixastic.process(img, "fliph");
         self.redrawLogo(logo);
         break;
         
       case 'histogram':
-        var logo = Pixastic.process(img, "colorhistogram", {
-      		paint:true,returnValue:hist
-      	});
-      	var hist = {};
-      	hist.rvals; // <- array[255] red channel
-      	hist.gvals; // <- array[255] green channel
-      	hist.bvals; // <- array[255] blue channel
-      	self.redrawLogo(logo);
+        logo = Pixastic.process(img, "colorhistogram", {
+          paint:true,returnValue:hist
+        });
+        var hist = {};
+        hist.rvals = 112; // <- array[255] red channel
+        hist.gvals = 99; // <- array[255] green channel
+        hist.bvals = 167; // <- array[255] blue channel
+        self.redrawLogo(logo);
         break;
         
       /**
@@ -164,8 +166,8 @@ CanvasView.prototype.updateLogo = function(command) {
     ctx.shadowOffsetX = 5;
     ctx.shadowOffsetY = 10;
     */
-  }
-  //return img;
+  };
+
 };
 
 /**
@@ -176,7 +178,7 @@ CanvasView.prototype.redrawLogo = function(logo) {
   this.context.setTransform(1, 0, 0, 1, 0, 0);
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   var x = (this.canvas.width / 2) - (logo.width / 2);
-  var y = (this.canvas.height / 2) - (logo.height / 2)
+  var y = (this.canvas.height / 2) - (logo.height / 2);
   this.context.drawImage(logo, x, y);
 };
 
@@ -194,22 +196,24 @@ CanvasView.prototype.setBackground = function(bgClass) {
  */
 CanvasView.prototype.setMask = function(mask) {
 
+  var maskImg;
+
   switch (mask) {
   
     case 'neon':
-      var maskImg = 'assets/images/effects/mask_neon.png';
+      maskImg = 'assets/images/effects/mask_neon.png';
       break;
       
     case 'green':
-      var maskImg = 'assets/images/effects/mask_green.png';
+      maskImg = 'assets/images/effects/mask_green.png';
       break;
       
     case 'bw':
-      var maskImg = 'assets/images/effects/mask_bw.png';
+      maskImg = 'assets/images/effects/mask_bw.png';
       break;
       
     default:
-      var maskImg = 'assets/images/effects/bg_galaxy.png';
+      maskImg = 'assets/images/effects/bg_galaxy.png';
   
   }
   
@@ -227,7 +231,7 @@ CanvasView.prototype.setMask = function(mask) {
   loadImages(function() {
     output.globalCompositeOperation = "source-over";
     output.putImageData(
-      applyCanvasMask(images['base'], images['alpha'], width, height), 0, 0, 0, 0, width, height
+      applyCanvasMask(images.base, images.alpha, width, height), 0, 0, 0, 0, width, height
     );
     
   });
@@ -269,4 +273,70 @@ CanvasView.prototype.setMask = function(mask) {
  */
 CanvasView.prototype.changeLogo = function() {
   //this.currentLogo = MIP.logos.getFresh();
-}
+};
+
+
+/**
+ * NotiView shows notifications on the screen
+ * 
+ */
+function NotiView() {
+  this.bindEvents();
+};
+
+/**
+ * Watch for custom events
+ * 
+ */
+NotiView.prototype.bindEvents = function() {
+  var self = this;
+  $(window).on('Tweets:newEffect', null, function(event, message) {
+    $.proxy(self.addNotification(message), self);
+  });
+};
+
+/**
+ * Add Gritter notification
+ * 
+ */
+NotiView.prototype.addNotification = function(message) {
+  $.gritter.add({
+      // (string | mandatory) the heading of the notification
+      title: 'This is a regular notice!',
+      // (string | mandatory) the text inside the notification
+      text: 'This will fade out after a certain amount of time.',
+      // (string | optional) the image to display on the left
+      image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
+      // (bool | optional) if you want it to fade out on its own or just sit there
+      sticky: false, 
+      // (int | optional) the time you want it to be alive for before fading out (milliseconds)
+      time: 5000,
+      // (string | optional) the class name you want to apply directly to the notification for custom styling
+      class_name: 'my-class',
+            // (function | optional) function called before it opens
+      before_open: function(){
+    
+      },
+      // (function | optional) function called after it opens
+      after_open: function(e){
+    
+      },
+      // (function | optional) function called before it closes
+      before_close: function(e, manual_close){
+    
+      },
+      // (function | optional) function called after it closes
+      after_close: function(){
+    
+      }
+  });
+};
+
+
+
+
+
+
+
+
+
