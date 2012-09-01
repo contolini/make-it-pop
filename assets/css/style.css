@@ -1,5 +1,5 @@
 body {
-  background-color: #ccc;
+
 }
 
 section#main {
@@ -8,4 +8,29 @@ section#main {
 
 canvas {
   margin: 0 auto;
+}
+
+/* backgrounds*/
+
+.bg {
+  background: transparent url() no-repeat center center fixed;
+}
+
+.bg.fullscreen {
+  -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.bg.galaxy {
+  background-image: url('/assets/images/effects/bg_galaxy.jpg');
+}
+
+.bg.paper {
+  background-image: url('/assets/images/effects/bg_paper.jpg');
+}
+
+.bg.bw {
+  background-image: url('/assets/images/effects/bg_bw.jpg');
 }

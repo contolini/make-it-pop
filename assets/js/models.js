@@ -4,6 +4,7 @@
  */
 function Tweets(url) {
   this.url = url;
+  this.commands = ['pizzaz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face'];
 }
 
 // get twitter json
@@ -20,80 +21,74 @@ Tweets.prototype.getData = function() {
 
 // parse twitter json
 Tweets.prototype.parseData = function(data) {
-
+  
+  var self = this;
+  var regex = new RegExp("#bnc [" + this.commands.join('|') + "]", "i");
   var commands = {};
   _.each(data, function(val, key) {
-    if (val.toLowerCase().match(/#bnc [accessories|coming]/g)) {
+    if (val.toLowerCase().match(regex)) {
       commands[key] = val;
     }
   });
   
   // [pizzaz|timeless|jazz it up|futuristic|friendly|eco|hip|slick|artsy|in your face]
-  // @TODO need to somehow grab the word after #bnc and send it to sendCommand
+  // @TODO need to regex for one of the above after #bnc and send it to chooseEffect
   
   this.chooseEffect('timeless');
-
-  //console.log(commands);
   
 };
 
 // triggers command event
-Tweets.prototype.chooseEffect = function(command) {
+Tweets.prototype.chooseEffect = function(author, command) {
   
   var commands = [];
   
   switch (command) {
   
     case "pizaaz":
-      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
       break;
       
     case "timeless":
-      
-      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      commands = ['bw', 'neon', 'galaxy', 'sharpen', 'noise'];
       break;
       
     case "jazz it up":
-      
-      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
       break;
       
     case "futuristic":
-      
-      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
       break;
       
     case "friendly":
-      
-      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
       break;
       
     case "eco":
-      
-      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
       break;
       
     case "hip":
-      
-      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
       break;
       
     case "slick":
-      
-      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
       break;
     
     case "artsy":
-    
-      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
       break;
       
     case "in your face":
-    
-      commands = ['blur', 'noise', 'posterize', 'sharpen'];
+      commands = ['blur', 'noise', 'posterize', 'sharpen', 'brightness', 'invert', 'flipv', 'fliph', 'histogram', 'sepia', 'solarize'];
       break;
   
   }
+  
+  var command = commands[Math.floor(Math.random()*commands.length)];
+  this.triggerEffect(command);
   
 };
 
@@ -174,6 +169,24 @@ function Logos() {
     {name: 'logo_woolmark.png', fresh: 1},
     {name: 'logo_wwf.png', fresh: 1}
   ]
+}
+
+/**
+ * Saves logo info to local storage
+ * 
+ */
+Logos.prototype.setLogos = function() {
+  localStorage.setItem('logos', JSON.stringify(this.list));
+}
+
+/**
+ * Gets logo info from local storage
+ * 
+ */
+Logos.prototype.getLogos = function() {
+  var value = localStorage.getItem('logos');
+  console.log("Pulled logo data from local storage.");
+  return value && JSON.parse(value);
 }
 
 // get a random fresh logo

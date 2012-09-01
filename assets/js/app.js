@@ -18,7 +18,7 @@ $(function() {
   });
   
   $(window).on('Tweets:newEffect', function(){
-    console.log("Tweets:newEffect event fired");
+    //console.log("Tweets:newEffect event fired");
   });
   
 });
