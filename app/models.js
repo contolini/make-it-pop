@@ -53,43 +53,43 @@ Tweets.prototype.chooseEffect = function(tweet) {
   switch (tweet.command) {
   
     case "pizaaz":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
       break;
       
     case "timeless":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
       break;
       
     case "jazz it up":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
       break;
       
     case "futuristic":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
       break;
       
     case "friendly":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
       break;
       
     case "eco":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
       break;
       
     case "hip":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
       break;
       
     case "slick":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
       break;
     
     case "artsy":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
       break;
       
     case "in your face":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon'];
+      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
       break;
       
     default:

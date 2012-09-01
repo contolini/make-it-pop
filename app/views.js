@@ -149,6 +149,10 @@ CanvasView.prototype.updateLogo = function(command) {
         self.setMask('green');
         break;
         
+      case 'grass': // eco
+        self.setMask('grass');
+        break;
+        
       case 'bw': // hip
         self.setMask('bw');
         self.setBackground('bg fullscreen bw');
@@ -159,6 +163,7 @@ CanvasView.prototype.updateLogo = function(command) {
     }
     
     console.log('Updated logo with effect: ' + command);
+    $('#msg').html('Effect applied: ' + command);
     /* shadow
     ctx.shadowColor = 'black';
     ctx.shadowBlur = 20;
@@ -209,6 +214,10 @@ CanvasView.prototype.setMask = function(mask) {
       
     case 'bw':
       maskImg = 'assets/images/effects/mask_bw.png';
+      break;
+      
+    case 'grass':
+      maskImg = 'assets/images/effects/mask_grass.jpg';
       break;
       
     default:

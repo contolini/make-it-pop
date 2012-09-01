@@ -15,9 +15,16 @@ $(function() {
   
   MIP.notiView = new NotiView();
   
+  /*
   $('button').click(function(){
     MIP.tweets.getData();
   });
+  */
+  
+  // search for tweets every three seconds
+  window.setInterval(function() {
+    MIP.tweets.getData();
+  }, 5000);
   
   $(window).on('Tweets:newEffect', function(event, tweet, effect){
     //console.log(tweet);

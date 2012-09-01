@@ -10,6 +10,10 @@ canvas {
   margin: 0 auto;
 }
 
+#msg {
+  background-color: #fff;
+}
+
 /* backgrounds*/
 
 .bg {
