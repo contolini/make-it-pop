@@ -86,8 +86,8 @@ CanvasView.prototype.updateLogo = function(command) {
         self.redrawLogo(logo);
         break;
         
-      case 'brightness':
-        logo = Pixastic.process(img, "brightness", {brightness:80,contrast:0.5});
+      case 'brightness': // kinda boring
+        logo = Pixastic.process(img, "brightness", {brightness:90,contrast:0.5});
         self.redrawLogo(logo);
         break;
         
@@ -137,6 +137,18 @@ CanvasView.prototype.updateLogo = function(command) {
         self.setBackground('bg fullscreen paper');
         break;
         
+      case 'supermodel': // hip
+        self.setBackground('bg fullscreen supermodel');
+        break;
+        
+      case 'lebron': // hip
+        self.setBackground('bg fullscreen lebron');
+        break;
+        
+      case 'icp': // hip
+        self.setBackground('bg fullscreen icp');
+        break;
+        
       /**
        * Masking effects
        * 
@@ -158,8 +170,68 @@ CanvasView.prototype.updateLogo = function(command) {
         self.setBackground('bg fullscreen bw');
         break;
         
+       /**
+       * Rotation effects
+       * 
+       */
+      case 'rotate45':  // hip
+        self.rotateLogo(img, 45);
+        break;
+        
+      case 'rotate135': // eco
+        self.rotateLogo(img, 135);
+        break;
+        
+      case 'rotate225': // eco
+        self.rotateLogo(img, 225);
+        break;
+        
+      case 'rotate270': // hip
+        self.rotateLogo(img, 270);
+        break;
+        
+      /**
+       * Foreground image effects
+       * 
+       */
+      case 'balloons':  // hip
+        self.overlayImage('balloons');
+        break;
+        
+      case 'cat':  // hip
+        self.overlayImage('cat');
+        break;
+        
+      case 'unicorn':  // hip
+        self.overlayImage('unicorn');
+        break;
+        
+      case 'eagle':  // hip
+        self.overlayImage('eagle');
+        break;
+        
+      case 'cat-star':  // hip
+        self.overlayImage('cat-star');
+        break;
+        
+      case 'flower':  // hip
+        self.overlayImage('flower');
+        break;
+        
+      case 'butterfly':  // hip
+        self.overlayImage('butterfly');
+        break;
+        
+      case 'bow':  // hip
+        self.overlayImage('bow');
+        break;
+        
+      case 'rainbow':  // hip
+        self.overlayImage('rainbow');
+        break;
+        
       default:
-        console.log("error: switch defaulted");
+        console.log("error: effect switch defaulted");
     }
     
     console.log('Updated logo with effect: ' + command);
@@ -175,15 +247,64 @@ CanvasView.prototype.updateLogo = function(command) {
 };
 
 /**
+ * Overlay images onto the logo
+ * 
+ */
+ 
+CanvasView.prototype.overlayImage = function(fgEffect) {
+  
+  var img = new Image();
+  var fgimg = _.find(MIP.images.list, function(item){
+    return item.effect == fgEffect;
+  });
+  img.src = MIP.images.dir + fgimg.name;
+  
+  var x = Math.floor(Math.random() * ($(window).width() - img.width)) + 'px';
+  var y = Math.floor(Math.random() * ($(window).height() - img.height)) + 'px';
+  
+  $(img).addClass('fg');
+  $(img).css({'top': y, 'left': x});
+  
+  if (Math.floor(Math.random()*2)) {
+    $(img).addClass('flip');
+  }
+  
+  console.log(x);
+  console.log(y);
+  
+  $('body').append(img);
+
+};
+
+/**
  * Redraw the logo after we modify it with an effect
  * 
  */
 CanvasView.prototype.redrawLogo = function(logo) {
+
   this.context.setTransform(1, 0, 0, 1, 0, 0);
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   var x = (this.canvas.width / 2) - (logo.width / 2);
   var y = (this.canvas.height / 2) - (logo.height / 2);
   this.context.drawImage(logo, x, y);
+  
+};
+
+/**
+ * Rotate and redraw logo
+ * 
+ */
+CanvasView.prototype.rotateLogo = function(logo, angle) {
+
+  this.context.save(); 
+  this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  this.context.translate((logo.width / 2), (logo.height / 2));
+  this.context.rotate(angle*Math.PI/180)
+  var x = (this.canvas.width / 2) - (logo.width / 2);
+  var y = (this.canvas.height / 2) - (logo.height / 2);
+  this.context.drawImage(logo, -(logo.width / 2), -(logo.height / 2));
+  this.context.restore(); 
+  
 };
 
 /**
@@ -191,7 +312,9 @@ CanvasView.prototype.redrawLogo = function(logo) {
  * 
  */
 CanvasView.prototype.setBackground = function(bgClass) {
+
   $('body').removeClass().addClass(bgClass);
+  
 };
 
 /**
@@ -311,9 +434,9 @@ NotiView.prototype.addNotification = function(tweet) {
   $.gritter.add({
       title: "Client request!",
       text: tweet.username + " wants it " + tweet.command,
-      image: tweet.avatar,
+      image: 'https://api.twitter.com/1/users/profile_image?screen_name=' + tweet.username + '&size=bigger',
       sticky: false, 
-      time: 5000,
+      time: 4000,
       class_name: 'my-class',
       before_open: function(){
     

@@ -1,5 +1,11 @@
 body {
+  position: relative;
+}
 
+#wrapper {
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 section#main {
@@ -14,7 +20,7 @@ canvas {
   background-color: #fff;
 }
 
-/* backgrounds*/
+/* backgrounds */
 
 .bg {
   background: transparent url() no-repeat center center fixed;
@@ -27,14 +33,23 @@ canvas {
 	background-size: cover;
 }
 
-.bg.galaxy {
-  background-image: url('/assets/images/effects/bg_galaxy.jpg');
+.bg.galaxy {background-image: url('/assets/images/effects/bg_galaxy.jpg')}
+.bg.paper {background-image: url('/assets/images/effects/bg_paper.jpg')}
+.bg.bw {background-image: url('/assets/images/effects/bg_bw.jpg')}
+.bg.supermodel {background-image: url('/assets/images/effects/bg_supermodel.jpg')}
+.bg.lebron {background-image: url('/assets/images/effects/bg_lebron.jpg')}
+.bg.icp {background-image: url('/assets/images/effects/bg_icp.jpg')}
+
+/* foregrounds */
+
+.fg {
+  position: absolute;
 }
 
-.bg.paper {
-  background-image: url('/assets/images/effects/bg_paper.jpg');
-}
-
-.bg.bw {
-  background-image: url('/assets/images/effects/bg_bw.jpg');
+.fg.flip {
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+  filter: FlipH;
 }

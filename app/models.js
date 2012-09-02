@@ -22,6 +22,8 @@ Tweets.prototype.getData = function() {
 Tweets.prototype.parseData = function(data) {
   
   /* I switched to regex'ing in php to keep things easier on the client
+  /* If we have Twitter API limiting problems it could help to move it back to the client
+  
   var regex = new RegExp("#bnc (" + this.commands.join('|') + ")", "i");
   var commands = {};
   _.each(data, function(val, key) {
@@ -33,10 +35,12 @@ Tweets.prototype.parseData = function(data) {
   
   //console.log(data);return;
   
-  if (data[0]['error']) {
-    console.log(data[0]['error']);
+  if (data == 'No tweet commands found.') {
+    var d = new Date();
+    console.log(d + ' ' + data);
+    return; 
   }
-  
+
   var self = this;
   
   _.each(data, function(val, key) {
@@ -53,43 +57,43 @@ Tweets.prototype.chooseEffect = function(tweet) {
   switch (tweet.command) {
   
     case "pizaaz":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
       break;
       
     case "timeless":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
       break;
       
     case "jazz it up":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
       break;
       
     case "futuristic":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
       break;
       
     case "friendly":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
       break;
       
     case "eco":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
       break;
       
     case "hip":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
       break;
       
     case "slick":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
       break;
     
     case "artsy":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
       break;
       
     case "in your face":
-      effects = ['noise', 'galaxy', 'brightness', 'flipv', 'fliph', 'neon', 'grass'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
       break;
       
     default:
@@ -255,3 +259,27 @@ Logos.prototype.resetUsed = function() {
   });
   
 };
+
+
+/**
+ * Images to overlay on the logos
+ * 
+ */
+function Images() {
+  
+  this.dir = '/assets/images/effects/';
+  this.list = [
+    {name: 'fg_balloons.png', effect: 'balloons'},
+    {name: 'fg_balloons2.png', effect: 'balloons2'},
+    {name: 'fg_bow.png', effect: 'bow'},
+    {name: 'fg_butterfly.png', effect: 'butterfly'},
+    {name: 'fg_cat-star.png', effect: 'cat-star'},
+    {name: 'fg_cat.png', effect: 'cat'},
+    {name: 'fg_eagle.gif', effect: 'eagle'},
+    {name: 'fg_flower.png', effect: 'flower'},
+    {name: 'fg_grass.png', effect: 'grass'},
+    {name: 'fg_unicorn.gif', effect: 'unicorn'},
+    {name: 'fg_rainbow.gif', effect: 'rainbow'}
+  ];
+
+}

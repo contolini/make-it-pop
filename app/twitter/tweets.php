@@ -1,7 +1,7 @@
 <?php
 
 $last_response_id = file_get_contents('last_response.txt');
-$last_response_id = 1; // @TODO remove
+//$last_response_id = 1; // @TODO remove
 
 $commands = ['pizzaz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face'];
 

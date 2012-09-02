@@ -9,17 +9,19 @@ $(function() {
   MIP.tweets = new Tweets('/app/twitter/tweets.php');
   
   MIP.logos = new Logos();
+  
+  MIP.images = new Images();
 
   MIP.canvasView = new CanvasView('#main canvas');
   MIP.canvasView.initLogo();
   
   MIP.notiView = new NotiView();
   
-  /*
+  
   $('button').click(function(){
     MIP.tweets.getData();
   });
-  */
+  
   
   // search for tweets every three seconds
   window.setInterval(function() {
