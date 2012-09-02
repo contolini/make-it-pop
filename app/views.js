@@ -238,6 +238,10 @@ CanvasView.prototype.updateLogo = function(command) {
         self.overlayImage('rainbow');
         break;
         
+      case 'fireworks':  // hip
+        self.overlayImage('fireworks');
+        break;
+        
       default:
         console.log("error: effect switch defaulted");
     }
@@ -266,8 +270,8 @@ CanvasView.prototype.overlayImage = function(fgEffect) {
   });
   img.src = MIP.images.dir + fgimg.name;
   
-  var x = Math.floor(Math.random() * ($(window).width() - 600)) + 100 + 'px';
-  var y = Math.floor(Math.random() * ($(window).height() - 600)) + 100 + 'px';
+  var x = Math.floor(Math.random() * ($(window).width() - 400)) + 'px';
+  var y = Math.floor(Math.random() * ($(window).height() - 200)) + 'px';
   
   $(img).addClass('fg');
   $(img).css({'top': y, 'left': x});
@@ -468,7 +472,8 @@ function DebugView() {
 };
 
 DebugView.prototype.pushMsg = function(msg) {
-  $('#msg').hide().html('Debug: ' + msg).fadeIn();
+  var d = new Date();
+  console.log(d + ' ' + msg);
 };
 
 

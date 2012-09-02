@@ -2,12 +2,13 @@
  * Tweets pulls and parses Twitter search results for commands
  * @param url: url of Twitter JSON
  */
-function Tweets(url) {
-  this.url = url;
+function Tweets(hashtag) {
+  this.hashtag = hashtag;
 }
 
 // get twitter json
 Tweets.prototype.getData = function() {
+  this.url = '/app/twitter/tweets.php?hashtag=' + this.hashtag + '&tweet_id=' + this.getTweetId();
   $.ajax({
     type: 'get',
     url: this.url,
@@ -36,18 +37,81 @@ Tweets.prototype.parseData = function(data) {
   //console.log(data);return;
   
   if (data == 'No tweet commands found.') {
-    var d = new Date();
-    MIP.debugView.pushMsg(d + ' ' + data); // @TODO remove
-    console.log(d + ' ' + data);
+    MIP.debugView.pushMsg(data);
     return; 
   }
 
   var self = this;
   
   _.each(data, function(val, key) {
+    if (val.tweet_id) {
+      self.setTweetId(val.tweet_id);
+      self.setTweetTime(val.timestamp);
+    }
     self.chooseEffect(val);
+    
   });
     
+};
+
+// fake a tweet if no one is participating
+Tweets.prototype.fakeIt = function() {
+
+  var commands = ['pizzaz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face'];
+  var command = commands[Math.floor(Math.random()*commands.length)];
+
+  var fakeTweet = {
+    command: command,
+    username: 'publicsociety',
+    tweet_id: this.getTweetId()
+  };
+  this.chooseEffect(fakeTweet);
+  MIP.debugView.pushMsg('Faked a tweet.');
+  
+}
+
+/**
+ * Saves last tweet id to local storage
+ * 
+ */
+Tweets.prototype.setTweetId = function(id) {
+  localStorage.removeItem('MIP.tweet_id');
+  localStorage.setItem('MIP.tweet_id', id);
+};
+
+/**
+ * Gets last tweet id from local storage
+ * 
+ */
+Tweets.prototype.getTweetId = function() {
+  var value = localStorage.getItem('MIP.tweet_id');
+  if (value) {
+    //MIP.debugView.pushMsg("Pulled last tweet ID from local storage: " + value);
+    return value;
+  } else {
+    //MIP.debugView.pushMsg("Failed to load last tweet ID.");
+    return 1;
+  }
+};
+
+/**
+ * Saves time of tweet
+ * 
+ */
+Tweets.prototype.setTweetTime = function(id) {
+  localStorage.removeItem('MIP.tweet_time');
+  localStorage.setItem('MIP.tweet_time', id);
+};
+
+/**
+ * Gets time of last tweet
+ * 
+ */
+Tweets.prototype.getTweetTime = function() {
+  var value = localStorage.getItem('MIP.tweet_time');
+  if (value) {
+    return parseInt(value);
+  }
 };
 
 // triggers command event
@@ -57,7 +121,11 @@ Tweets.prototype.chooseEffect = function(tweet) {
   
   switch (tweet.command) {
   
-    case "pizaaz":
+    case "pizzaz":
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      break;
+      
+    case "pizzazz":
       effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
       break;
       
@@ -208,10 +276,10 @@ Logos.prototype.setLogos = function() {
 Logos.prototype.getLogos = function() {
   var value = localStorage.getItem('MIP.logos');
   if (value) {
-    console.log("Pulled logo data from local storage.");
+    MIP.debugView.pushMsg("Pulled logo data from local storage.");
     return JSON.parse(value);
   } else {
-    console.log("Did not pull logo data from local storage.");
+    MIP.debugView.pushMsg("Did not pull logo data from local storage.");
     return false;
   }
 };
@@ -232,8 +300,6 @@ Logos.prototype.getFresh = function() {
   }
     
   this.markUsed(logo);
-  
-  //var logo = this.list[Math.floor(Math.random()*this.list.length)];
   
   this.setLogos();
   
@@ -282,7 +348,8 @@ function Images() {
     {name: 'fg_grass.png', effect: 'grass'},
     {name: 'fg_unicorn.gif', effect: 'unicorn'},
     {name: 'fg_unicorn2.gif', effect: 'unicorn2'},
-    {name: 'fg_rainbow.gif', effect: 'rainbow'}
+    {name: 'fg_rainbow.gif', effect: 'rainbow'},
+    {name: 'fg_fireworks.gif', effect: 'fireworks'}
   ];
 
 }

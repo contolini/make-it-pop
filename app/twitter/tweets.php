@@ -1,50 +1,53 @@
 <?php
 
-$last_response_id = file_get_contents('last_response.txt');
+$last_response_id = $_GET['tweet_id'];
+$hashtag = $_GET['hashtag'];
+
 //$last_response_id = 1; // @TODO remove
 
-$commands = array('pizzaz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face', 'debug');
+$commands = array('pizzaz', 'pizzazz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face', 'debug');
 
-$search = file_get_contents("http://search.twitter.com/search.json?q=%23bnc&rpp=20&result_type=recent&since_id=" . $last_response_id);
+$search = file_get_contents('http://search.twitter.com/search.json?q=%23' . $hashtag . '&rpp=20&result_type=recent&since_id=' . $last_response_id);
 //$search = file_get_contents("test.json"); // @TODO remove
 $tweets = json_decode($search);
 $tweets = $tweets->results;
 
 $isFirst = true;
-$lastTweet = end($tweets);
-reset($tweets);
 
 $arr = array();
 $i = 0;
 
-$regex = '/#bnc (' . implode('|', $commands) . ')/i';
+$regex = '/#bnc (' . implode('|', $commands) . ')+/i';
 
 foreach($tweets as $tweet) {
 
   $username = $tweet->from_user;
   $avatar = $tweet->profile_image_url;
   $status = $tweet->text;
+  $timestamp = $tweet->created_at;
   
   if (preg_match($regex, $status, $matches)) {
     $arr[$i]['username'] = $username;
     $arr[$i]['avatar'] = $avatar;
     $arr[$i]['command'] = $matches[1];
+    $arr[$i]['timestamp'] = strtotime($timestamp);
+    
     if ($matches[1] === 'debug') {
-      $regex = '/debug (.*)/i';
-      preg_match($regex, $status, $matches);
+      $regex2 = '/debug (.*)/i';
+      preg_match($regex2, $status, $matches);
       $arr[$i]['command'] = 'debug ' . $matches[1];
     }
-    $i++;
+    
   }
   
   if ($isFirst) {
-    $myFile = "last_response.txt";
-    $fh = fopen($myFile, 'w') or die("can't open file");
-    $stringData = $tweet->id;
-    fwrite($fh, $stringData);
-    fclose($fh);
+    $arr[$i]['tweet_id'] = strval($tweet->id);
     $isFirst = false;
+  } else {
+    $arr[$i]['tweet_id'] = 0;
   }
+  
+  $i++;
     
 }
 

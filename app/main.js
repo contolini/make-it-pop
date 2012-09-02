@@ -6,40 +6,44 @@ var MIP = MIP || {};
 
 $(function() {
 
-  MIP.tweets = new Tweets('/app/twitter/tweets.php');
-  
-  MIP.logos = new Logos();
-  
-  MIP.images = new Images();
+  MIP.debugView = new DebugView();
 
-  MIP.canvasView = new CanvasView('#main canvas');
-  MIP.canvasView.initLogo();
-  
+  MIP.tweets = new Tweets('bnc');
+  MIP.logos = new Logos();
+  MIP.images = new Images();
+  MIP.canvasView = new CanvasView('canvas');
   MIP.notiView = new NotiView();
   
-  MIP.debugView = new DebugView();
-  
+  MIP.canvasView.initLogo();
   
   $('button').click(function(){
     MIP.tweets.getData();
   });
   
-  
-  // search for tweets every three seconds
+  // search for tweets every five seconds
   window.setInterval(function() {
     MIP.tweets.getData();
+    if (MIP.logos.numEffects >= 10) {
+      window.location.reload();
+    }
   }, 5000);
+
+  
+  // check every sixty seconds if no one has done anything, fake a tweet if so
+  window.setInterval(function() {
+    var t = new Date().getTime() / 1000;
+    if (t - MIP.tweets.getTweetTime() >= 179 || !MIP.tweets.getTweetTime()) {
+      MIP.tweets.fakeIt();
+    }
+  }, 180000);
+  
+  
+  /**
+   * Debug tools
+   * 
+   */
+  //localStorage.clear(); // erases logos from storage
   
   
 });
-
-/**
- * Debug functions
- * 
- */
-//localStorage.clear(); // erase logos from storage
-
-
-
-
 
