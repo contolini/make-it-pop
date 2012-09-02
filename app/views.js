@@ -56,7 +56,7 @@ CanvasView.prototype.updateLogo = function(command) {
         break;
         
       case 'blur': // @avoid this pushes pixels together and ruins logos with thin lines
-        logo = Pixastic.process(img, "blurfast", {amount:0.3});
+        logo = Pixastic.process(img, "blurfast", {amount:0.5});
         self.redrawLogo(logo);
         break;
         
@@ -149,6 +149,10 @@ CanvasView.prototype.updateLogo = function(command) {
         self.setBackground('bg fullscreen icp');
         break;
         
+      case 'sparkle': // hip
+        self.setBackground('bg tile sparkle');
+        break;
+        
       /**
        * Masking effects
        * 
@@ -167,7 +171,7 @@ CanvasView.prototype.updateLogo = function(command) {
         
       case 'bw': // hip
         self.setMask('bw');
-        self.setBackground('bg fullscreen bw');
+        //self.setBackground('bg fullscreen bw');
         break;
         
        /**
@@ -206,6 +210,10 @@ CanvasView.prototype.updateLogo = function(command) {
         self.overlayImage('unicorn');
         break;
         
+      case 'unicorn2':  // hip
+        self.overlayImage('unicorn2');
+        break;
+        
       case 'eagle':  // hip
         self.overlayImage('eagle');
         break;
@@ -234,8 +242,7 @@ CanvasView.prototype.updateLogo = function(command) {
         console.log("error: effect switch defaulted");
     }
     
-    console.log('Updated logo with effect: ' + command);
-    $('#msg').html('Effect applied: ' + command);
+    MIP.debugView.pushMsg('Effect applied: ' + command);
     /* shadow
     ctx.shadowColor = 'black';
     ctx.shadowBlur = 20;
@@ -259,8 +266,8 @@ CanvasView.prototype.overlayImage = function(fgEffect) {
   });
   img.src = MIP.images.dir + fgimg.name;
   
-  var x = Math.floor(Math.random() * ($(window).width() - img.width)) + 'px';
-  var y = Math.floor(Math.random() * ($(window).height() - img.height)) + 'px';
+  var x = Math.floor(Math.random() * ($(window).width() - 600)) + 100 + 'px';
+  var y = Math.floor(Math.random() * ($(window).height() - 600)) + 100 + 'px';
   
   $(img).addClass('fg');
   $(img).css({'top': y, 'left': x});
@@ -268,9 +275,6 @@ CanvasView.prototype.overlayImage = function(fgEffect) {
   if (Math.floor(Math.random()*2)) {
     $(img).addClass('flip');
   }
-  
-  console.log(x);
-  console.log(y);
   
   $('body').append(img);
 
@@ -454,9 +458,18 @@ NotiView.prototype.addNotification = function(tweet) {
 };
 
 
+/**
+ * Debuggin functionality
+ * 
+ */
 
+function DebugView() {
 
+};
 
+DebugView.prototype.pushMsg = function(msg) {
+  $('#msg').hide().html('Debug: ' + msg).fadeIn();
+};
 
 
 

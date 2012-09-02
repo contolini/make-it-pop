@@ -4,6 +4,7 @@ body {
   padding: 0;
   width: 100%;
   text-align: center;
+  font-family: Helvetica;
 }
 
 section {
@@ -19,9 +20,8 @@ canvas {
 #msg {
   background-color: #fff;
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   left: 10px;
-  color: red;
 }
 
 /* backgrounds */
@@ -37,12 +37,17 @@ canvas {
 	background-size: cover;
 }
 
+.bg.tile {
+  background-repeat: repeat;
+}
+
 .bg.galaxy {background-image: url('/assets/images/effects/bg_galaxy.jpg')}
 .bg.paper {background-image: url('/assets/images/effects/bg_paper.jpg')}
 .bg.bw {background-image: url('/assets/images/effects/bg_bw.jpg')}
 .bg.supermodel {background-image: url('/assets/images/effects/bg_supermodel.jpg')}
 .bg.lebron {background-image: url('/assets/images/effects/bg_lebron.jpg')}
 .bg.icp {background-image: url('/assets/images/effects/bg_icp.jpg')}
+.bg.sparkle {background-image: url('/assets/images/effects/bg_sparkle.gif')}
 
 /* foregrounds */
 

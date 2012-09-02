@@ -3,7 +3,7 @@
 $last_response_id = file_get_contents('last_response.txt');
 //$last_response_id = 1; // @TODO remove
 
-$commands = ['pizzaz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face'];
+$commands = array('pizzaz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face', 'debug');
 
 $search = file_get_contents("http://search.twitter.com/search.json?q=%23bnc&rpp=20&result_type=recent&since_id=" . $last_response_id);
 //$search = file_get_contents("test.json"); // @TODO remove
@@ -29,6 +29,11 @@ foreach($tweets as $tweet) {
     $arr[$i]['username'] = $username;
     $arr[$i]['avatar'] = $avatar;
     $arr[$i]['command'] = $matches[1];
+    if ($matches[1] === 'debug') {
+      $regex = '/debug (.*)/i';
+      preg_match($regex, $status, $matches);
+      $arr[$i]['command'] = 'debug ' . $matches[1];
+    }
     $i++;
   }
   

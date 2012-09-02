@@ -17,6 +17,8 @@ $(function() {
   
   MIP.notiView = new NotiView();
   
+  MIP.debugView = new DebugView();
+  
   
   $('button').click(function(){
     MIP.tweets.getData();
@@ -28,10 +30,6 @@ $(function() {
     MIP.tweets.getData();
   }, 5000);
   
-  $(window).on('Tweets:newEffect', function(event, tweet, effect){
-    //console.log(tweet);
-    //console.log(effect);
-  });
   
 });
 

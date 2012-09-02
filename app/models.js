@@ -37,6 +37,7 @@ Tweets.prototype.parseData = function(data) {
   
   if (data == 'No tweet commands found.') {
     var d = new Date();
+    MIP.debugView.pushMsg(d + ' ' + data); // @TODO remove
     console.log(d + ' ' + data);
     return; 
   }
@@ -97,7 +98,8 @@ Tweets.prototype.chooseEffect = function(tweet) {
       break;
       
     default:
-      effects = ['bw', 'neon', 'galaxy', 'sharpen', 'noise'];
+      var debugEffect = tweet.command.replace('debug ','');
+      effects = [debugEffect];
       break;
   
   }
@@ -279,6 +281,7 @@ function Images() {
     {name: 'fg_flower.png', effect: 'flower'},
     {name: 'fg_grass.png', effect: 'grass'},
     {name: 'fg_unicorn.gif', effect: 'unicorn'},
+    {name: 'fg_unicorn2.gif', effect: 'unicorn2'},
     {name: 'fg_rainbow.gif', effect: 'rainbow'}
   ];
 
