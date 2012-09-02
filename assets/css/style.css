@@ -1,23 +1,27 @@
 body {
   position: relative;
-}
-
-#wrapper {
-  width: 1000px;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
+  width: 100%;
   text-align: center;
 }
 
-section#main {
+section {
   text-align: center;
+  width: 100%;
 }
 
 canvas {
   margin: 0 auto;
+  text-align: center;
 }
 
 #msg {
   background-color: #fff;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: red;
 }
 
 /* backgrounds */

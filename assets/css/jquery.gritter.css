@@ -5,6 +5,7 @@
 	right:20px;
 	width:501px;
 	z-index:9999;
+	text-align: left;
 }
 #gritter-notice-wrapper.top-left {
     left: 20px;
