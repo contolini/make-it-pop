@@ -33,10 +33,10 @@ $(function() {
   // check every sixty seconds if no one has done anything, fake a tweet if so
   window.setInterval(function() {
     var t = new Date().getTime() / 1000;
-    if (t - MIP.tweets.getTweetTime() >= 179 || !MIP.tweets.getTweetTime()) {
+    if (t - MIP.tweets.getTweetTime() >= 59 || !MIP.tweets.getTweetTime()) {
       MIP.tweets.fakeIt();
     }
-  }, 180000);
+  }, 60000);
   
   
   /**
