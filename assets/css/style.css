@@ -68,4 +68,5 @@ canvas {
 
 .client {
   position: fixed;
+  z-index: 999;
 }

@@ -441,7 +441,7 @@ NotiView.prototype.bindEvents = function() {
 NotiView.prototype.addNotification = function(tweet) {
   $.gritter.add({
       title: "Client request!",
-      text: tweet.username + " wants it " + tweet.command,
+      text: tweet.username + " wants " + tweet.command,
       image: 'https://api.twitter.com/1/users/profile_image?screen_name=' + tweet.username + '&size=bigger',
       sticky: false, 
       time: 4000,

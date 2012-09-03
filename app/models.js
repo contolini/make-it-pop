@@ -122,47 +122,47 @@ Tweets.prototype.chooseEffect = function(tweet) {
   switch (tweet.command) {
   
     case "pizzaz":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
       break;
       
     case "pizzazz":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
       break;
       
     case "timeless":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
       break;
       
     case "jazz it up":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
       break;
       
     case "futuristic":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
       break;
       
     case "friendly":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
       break;
       
     case "eco":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
       break;
       
     case "hip":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
       break;
       
     case "slick":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
       break;
     
     case "artsy":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
       break;
       
     case "in your face":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons'];
+      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
       break;
       
     default:
