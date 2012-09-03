@@ -463,7 +463,7 @@ NotiView.prototype.addNotification = function(tweet) {
 
 
 /**
- * Debuggin functionality
+ * Debugging functionality
  * 
  */
 
@@ -477,5 +477,33 @@ DebugView.prototype.pushMsg = function(msg) {
 };
 
 
+/**
+ * Animated client functionality
+ * 
+ */
 
+function ClientView() {
+
+  var img = new Image();
+  
+  img.src = MIP.images.dir + 'client1.png';
+  
+  $(img).addClass('client');
+  $(img).css({'bottom': '-530px', 'left': '10px'});
+  
+  $('body').append(img);
+
+};
+
+ClientView.prototype.show = function() {
+  
+  $('img.client').animate({
+    'bottom': '0px'
+  });
+  
+  window.setInterval(function() {
+    window.location.reload();
+  }, 5000);
+  
+};
 

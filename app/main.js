@@ -13,6 +13,7 @@ $(function() {
   MIP.images = new Images();
   MIP.canvasView = new CanvasView('canvas');
   MIP.notiView = new NotiView();
+  MIP.clientView = new ClientView();
   
   MIP.canvasView.initLogo();
   
@@ -24,7 +25,7 @@ $(function() {
   window.setInterval(function() {
     MIP.tweets.getData();
     if (MIP.logos.numEffects >= 10) {
-      window.location.reload();
+      MIP.clientView.show();
     }
   }, 5000);
 
