@@ -8,11 +8,11 @@ function Tweets(hashtag) {
 
 // get twitter json
 Tweets.prototype.getData = function() {
-  this.url = '/app/twitter/tweets.php?hashtag=' + this.hashtag + '&tweet_id=' + this.getTweetId();
+  this.url = 'http://search.twitter.com/search.json?q=%23' + this.hashtag + '&rpp=20&result_type=recent&since_id=' + this.getTweetId();
   $.ajax({
     type: 'get',
     url: this.url,
-    dataType: 'json',
+    dataType: 'jsonp',
     context: this,
     success: this.parseData,
     error: this.onError
@@ -34,7 +34,7 @@ Tweets.prototype.parseData = function(data) {
   });
   */
   
-  //console.log(data);return;
+  console.log(data);return;
   
   if (data == 'No tweet commands found.') {
     MIP.debugView.pushMsg(data);
