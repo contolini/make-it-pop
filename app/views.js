@@ -482,7 +482,7 @@ DebugView.prototype.pushMsg = function(msg) {
  * 
  */
 
-function ClientView() {
+function FinaleView() {
 
   var img = new Image();
   
@@ -495,7 +495,7 @@ function ClientView() {
 
 };
 
-ClientView.prototype.show = function() {
+FinaleView.prototype.show = function() {
   
   $('img.client').animate({
     'bottom': '0px'

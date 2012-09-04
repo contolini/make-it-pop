@@ -13,24 +13,26 @@ $(function() {
   MIP.images = new Images();
   MIP.canvasView = new CanvasView('canvas');
   MIP.notiView = new NotiView();
-  MIP.clientView = new ClientView();
+  MIP.finaleView = new finaleView();
   
   MIP.canvasView.initLogo();
   
-  $('button').click(function(){
-    MIP.tweets.getData();
-  });
-  
-  /* // search for tweets every five seconds
+  /**
+   * Search for tweets every five seconds
+   * 
+   */
   window.setInterval(function() {
     MIP.tweets.getData();
     if (MIP.logos.numEffects >= 10) {
-      MIP.clientView.show();
+      MIP.finaleView.show();
     }
-  }, 5000);*/
+  }, 5000);
 
   
-  // check every sixty seconds if no one has done anything, fake a tweet if so
+  /**
+    * Check every sixty seconds if no one has done anything, fake a tweet if so
+    * 
+    */ 
   window.setInterval(function() {
     var t = new Date().getTime() / 1000;
     if (t - MIP.tweets.getTweetTime() >= 59 || !MIP.tweets.getTweetTime()) {
