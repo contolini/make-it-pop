@@ -4,11 +4,13 @@
  */
 function Tweets(hashtag) {
   this.hashtag = hashtag;
+  this.commands = ['pizzaz', 'pizzazz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face', 'debug'];
 }
 
 // get twitter json
 Tweets.prototype.getData = function() {
   this.url = 'http://search.twitter.com/search.json?q=%23' + this.hashtag + '&rpp=20&result_type=recent&since_id=' + this.getTweetId();
+  //this.url = 'http://search.twitter.com/search.json?q=%23' + this.hashtag + '&rpp=20&result_type=recent&since_id=1';
   $.ajax({
     type: 'get',
     url: this.url,
@@ -22,34 +24,49 @@ Tweets.prototype.getData = function() {
 // parse twitter json
 Tweets.prototype.parseData = function(data) {
   
-  /* I switched to regex'ing in php to keep things easier on the client
-  /* If we have Twitter API limiting problems it could help to move it back to the client
-  
-  var regex = new RegExp("#bnc (" + this.commands.join('|') + ")", "i");
-  var commands = {};
-  _.each(data, function(val, key) {
-    if (val.toLowerCase().match(regex)) {
-      commands[key] = val;
-    }
-  });
-  */
-  
-  console.log(data);return;
-  
-  if (data == 'No tweet commands found.') {
-    MIP.debugView.pushMsg(data);
+  var tweets = data.results,
+      self = this,
+      regex = new RegExp("#bnc (" + this.commands.join('|') + ")", "i");
+      
+  if (tweets.length < 1) {
+    MIP.debugView.pushMsg('No tweet commands found.');
     return; 
   }
-
-  var self = this;
-  
-  _.each(data, function(val, key) {
-    if (val.tweet_id) {
-      self.setTweetId(val.tweet_id);
-      self.setTweetTime(val.timestamp);
-    }
-    self.chooseEffect(val);
+      
+  _.each(tweets, function(val, key) {
     
+    var username = val.from_user,
+        avatar = val.profile_image_url,
+        status = val.text,
+        timestamp = val.created_at,
+        tweet_id = val.id_str,
+        commandMatches;
+                
+    if (BigInteger(tweet_id).compare(self.getTweetId()) > 0) {
+    
+      self.setTweetId(tweet_id);
+      self.setTweetTime(timestamp);
+      
+    }
+        
+    if ((commandMatches = regex.exec(status)) !== null) {
+    
+      var command = {};
+      command.username = username;
+      command.avatar = avatar;
+      command.command = commandMatches[1];
+      command.timestamp = timestamp;
+      
+      if (command.command === 'debug') {
+        var debugRegex = new RegExp("debug (.*)", "i");
+        var debugCommand = debugRegex.exec(status);
+        command.command = 'debug ' + debugCommand[1];
+      }
+      
+      self.chooseEffect(command);
+      
+    }
+        
   });
     
 };

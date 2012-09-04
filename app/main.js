@@ -21,13 +21,13 @@ $(function() {
     MIP.tweets.getData();
   });
   
-  // search for tweets every five seconds
+  /* // search for tweets every five seconds
   window.setInterval(function() {
     MIP.tweets.getData();
     if (MIP.logos.numEffects >= 10) {
       MIP.clientView.show();
     }
-  }, 5000);
+  }, 5000);*/
 
   
   // check every sixty seconds if no one has done anything, fake a tweet if so
