@@ -83,15 +83,17 @@ Tweets.prototype.parseData = function(data) {
  */
 Tweets.prototype.fakeIt = function() {
 
-  var commands = ['pizzaz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face'];
-  var command = commands[Math.floor(Math.random()*commands.length)];
+  var command = this.commands[Math.floor(Math.random()*this.commands.length)];
 
   var fakeTweet = {
     command: command,
     username: 'publicsociety',
     tweet_id: this.getTweetId()
   };
+  
+  this.setTweetTime(new Date().getTime());
   this.chooseEffect(fakeTweet);
+  
   MIP.debugView.pushMsg('Faked a tweet.');
   
 }
@@ -124,9 +126,10 @@ Tweets.prototype.getTweetId = function() {
  * Saves time of tweet
  * 
  */
-Tweets.prototype.setTweetTime = function(id) {
+Tweets.prototype.setTweetTime = function(time) {
+  var time = new Date(time).getTime();
   localStorage.removeItem('MIP.tweet_time');
-  localStorage.setItem('MIP.tweet_time', id);
+  localStorage.setItem('MIP.tweet_time', time);
 };
 
 /**
@@ -134,9 +137,9 @@ Tweets.prototype.setTweetTime = function(id) {
  * 
  */
 Tweets.prototype.getTweetTime = function() {
-  var value = localStorage.getItem('MIP.tweet_time');
-  if (value) {
-    return parseInt(value);
+  var time = localStorage.getItem('MIP.tweet_time');
+  if (time) {
+    return time;
   }
 };
 

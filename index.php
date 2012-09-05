@@ -27,7 +27,7 @@ header("Pragma: no-cache");
     <script type="text/javascript" src="assets/js/pixastic.min.js"></script>
     <script type="text/javascript" src="assets/js/canvasMask.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.gritter.min.js"></script>
-    <script type="text/javascript" src="https://raw.github.com/silentmatt/javascript-biginteger/master/biginteger.js"></script>
+    <script type="text/javascript" src="assets/js/biginteger.js"></script>
     <script type="text/javascript" src="app/main.js"></script>
     <script type="text/javascript" src="app/models.js"></script>
     <script type="text/javascript" src="app/views.js"></script>

@@ -26,19 +26,10 @@ $(function() {
     if (MIP.logos.numEffects >= 10) {
       MIP.finaleView.show();
     }
-  }, 5000);
-
-  
-  /**
-    * Check every sixty seconds if no one has done anything, fake a tweet if so
-    * 
-    */ 
-  window.setInterval(function() {
-    var t = new Date().getTime() / 1000;
-    if (t - MIP.tweets.getTweetTime() >= 59 || !MIP.tweets.getTweetTime()) {
+    if (new Date().getTime() - MIP.tweets.getTweetTime() >= 59000) {
       MIP.tweets.fakeIt();
     }
-  }, 60000);
+  }, 5000);
   
   
   /**
