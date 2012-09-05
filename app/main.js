@@ -13,7 +13,7 @@ $(function() {
   MIP.images = new Images();
   MIP.canvasView = new CanvasView('canvas');
   MIP.notiView = new NotiView();
-  MIP.finaleView = new finaleView();
+  MIP.finaleView = new FinaleView();
   
   MIP.canvasView.initLogo();
   
