@@ -7,7 +7,10 @@ function Tweets(hashtag) {
   this.commands = ['pizzaz', 'pizzazz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face', 'debug'];
 }
 
-// get twitter json
+/**
+ * Get Twitter search results JSON
+ * 
+ */
 Tweets.prototype.getData = function() {
   this.url = 'http://search.twitter.com/search.json?q=%23' + this.hashtag + '&rpp=20&result_type=recent&since_id=' + this.getTweetId();
   //this.url = 'http://search.twitter.com/search.json?q=%23' + this.hashtag + '&rpp=20&result_type=recent&since_id=1';
@@ -21,7 +24,10 @@ Tweets.prototype.getData = function() {
   });
 };
 
-// parse twitter json
+/**
+ * Parse Twitter JSON
+ * 
+ */
 Tweets.prototype.parseData = function(data) {
   
   var tweets = data.results,
@@ -71,7 +77,10 @@ Tweets.prototype.parseData = function(data) {
     
 };
 
-// fake a tweet if no one is participating
+/**
+ * Fake a tweet if no one is participating
+ * 
+ */
 Tweets.prototype.fakeIt = function() {
 
   var commands = ['pizzaz', 'timeless', 'jazz it up', 'futuristic', 'friendly', 'eco', 'hip', 'slick', 'artsy', 'in your face'];
@@ -131,7 +140,10 @@ Tweets.prototype.getTweetTime = function() {
   }
 };
 
-// triggers command event
+/**
+ * Choose a random effect from given command
+ * 
+ */
 Tweets.prototype.chooseEffect = function(tweet) {
   
   var effects = [];
@@ -194,7 +206,10 @@ Tweets.prototype.chooseEffect = function(tweet) {
   
 };
 
-// triggers command event
+/**
+ * Triggers effect
+ * 
+ */
 Tweets.prototype.triggerEffect = function(tweet, effect) {
   
   var data = [tweet, effect];
@@ -204,7 +219,10 @@ Tweets.prototype.triggerEffect = function(tweet, effect) {
   
 };
 
-
+/**
+ * Log any Twitter API errors
+ * 
+ */
 Tweets.prototype.onError = function(jqXHR, textStatus, errorThrown) {
   console.log('Tried to get twitter results via ajax and got: ' + errorThrown);
 };
