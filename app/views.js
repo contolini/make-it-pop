@@ -71,6 +71,11 @@ CanvasView.prototype.updateLogo = function(command) {
         self.redrawLogo(logo);
         break;
         
+      case 'pixelate': // @avoid super slow and cpu intensive
+        logo = Pixastic.process(img, "mosaic", {blockSize:15});
+        self.redrawLogo(logo);
+        break;
+        
       case 'posterize':
         logo = Pixastic.process(img, "posterize", {levels:2});
         self.redrawLogo(logo);
@@ -146,6 +151,14 @@ CanvasView.prototype.updateLogo = function(command) {
         self.setBackground('rainbow-smoke');
         break;
         
+      case 'sunbeam':
+        self.setBackground('sunbeam');
+        break;
+        
+      case 'illusion':
+        self.setBackground('illusion');
+        break;
+        
       /**
        * Masking effects
        * 
@@ -172,6 +185,10 @@ CanvasView.prototype.updateLogo = function(command) {
         
       case 'gold':
         self.setMask('gold');
+        break;
+        
+      case 'distressed':
+        self.setMask('distressed');
         break;
         
       case 'white-on-rainbow':
@@ -303,6 +320,10 @@ CanvasView.prototype.updateLogo = function(command) {
         self.overlayImage('splatter2');
         break;
         
+      case 'burst': 
+        self.overlayImage('burst');
+        break;
+        
       /**
        * Tile and center foreground image effects
        * 
@@ -338,19 +359,45 @@ CanvasView.prototype.updateLogo = function(command) {
       case 'flames':
         self.overlayBorder('flames');
         break;
+        
+      /**
+       * Drop a shadow
+       * 
+       */
+      case 'shadow':
+        self.dropShadow();
+        break;
 
       default:
         console.log("error: effect switch defaulted");
     }
     
     MIP.debugView.pushMsg('Effect applied: ' + command);
-    /* shadow
-    ctx.shadowColor = 'black';
-    ctx.shadowBlur = 20;
-    ctx.shadowOffsetX = 5;
-    ctx.shadowOffsetY = 10;
-    */
+
   };
+
+};
+
+/**
+ * Drop a shadow
+ * 
+ */
+CanvasView.prototype.dropShadow = function() {
+
+  var logo = new Image();
+  logo.src = this.canvas.toDataURL();
+  
+  this.context.save(); 
+  this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  this.context.translate((logo.width / 2), (logo.height / 2));
+  this.context.shadowColor = 'black';
+  this.context.shadowBlur = 20;
+  this.context.shadowOffsetX = 5;
+  this.context.shadowOffsetY = 10;
+  var x = (this.canvas.width / 2) - (logo.width / 2);
+  var y = (this.canvas.height / 2) - (logo.height / 2);
+  this.context.drawImage(logo, -(logo.width / 2), -(logo.height / 2));
+  this.context.restore();
 
 };
 
@@ -490,6 +537,10 @@ CanvasView.prototype.setMask = function(mask) {
       
     case 'gold':
       maskImg = 'assets/images/effects/mask_gold.png';
+      break;
+      
+    case 'distressed':
+      maskImg = 'assets/images/effects/mask_distressed.jpg';
       break;
       
     default:

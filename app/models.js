@@ -154,11 +154,11 @@ Tweets.prototype.chooseEffect = function(tweet) {
   switch (tweet.command) {
   
     case "pizzaz":
-      effects = ['sparkle', 'flames', 'sun-beam', 'cat-star', 'icp'];
+      effects = ['sparkle', 'flames', 'sunbeam', 'cat-star', 'icp'];
       break;
       
     case "pizzazz":
-      effects = ['sparkle', 'flames', 'sun-beam', 'cat-star', 'icp'];
+      effects = ['sparkle', 'flames', 'sunbeam', 'cat-star', 'icp'];
       break;
       
     case "timeless":
@@ -170,7 +170,7 @@ Tweets.prototype.chooseEffect = function(tweet) {
       break;
       
     case "futuristic":
-      effects = ['galaxy', 'alien'];
+      effects = ['galaxy', 'alien', 'pixelate'];
       break;
       
     case "friendly":
@@ -190,11 +190,11 @@ Tweets.prototype.chooseEffect = function(tweet) {
       break;
     
     case "artsy":
-      effects = ['splatter', 'splatter2'];
+      effects = ['splatter', 'splatter2', 'distressed', 'eagle'];
       break;
       
     case "in your face":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
+      effects = ['burst', 'eagle', 'illusion', 'shadow'];
       break;
       
     default:
@@ -401,7 +401,8 @@ function Images() {
     {name: 'fg_bling.gif', effect: 'bling'},
     {name: 'fg_glare.png', effect: 'glare'},
     {name: 'fg_splatter.png', effect: 'splatter'},
-    {name: 'fg_splatter2.png', effect: 'splatter2'}
+    {name: 'fg_splatter2.png', effect: 'splatter2'},
+    {name: 'fg_burst.png', effect: 'burst'}
   ];
 
 }
