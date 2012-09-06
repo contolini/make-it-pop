@@ -453,13 +453,13 @@ CanvasView.prototype.overlayBorder = function(borderImage) {
  */
 CanvasView.prototype.setForeground = function(imageClasses) {
 
+  var div = document.createElement('div');
+  $(div).addClass('fg ' + imageClasses);
+
   if (imageClasses === 'tile logo') {
     var img = this.canvas.toDataURL();
+    $(div).css('background-image', 'url(' + img + ')');
   }
-  
-  var div = document.createElement('div');
-  
-  $(div).addClass('fg ' + imageClasses).css('background-image', 'url(' + img + ')');
   
   $('body').append(div);
 
