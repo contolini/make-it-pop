@@ -36,7 +36,7 @@ $(function() {
       MIP.finaleView.show();
       clearInterval(checkTweets);
     }
-    if (new Date().getTime() - MIP.tweets.getTweetTime() >= 180000) {
+    if ((new Date().getTime() - MIP.tweets.getTweetTime() >= 180000) && (MIP.logos.numEffects > 0)) {
       MIP.tweets.fakeIt();
     }
   }, 5000);
