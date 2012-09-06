@@ -6,7 +6,12 @@ var MIP = MIP || {};
 
 $(function() {
 
+  /**
+   * Debug tools
+   * 
+   */
   MIP.debugView = new DebugView();
+  //localStorage.clear(); // erases logos from storage
 
   MIP.tweets = new Tweets('bnc');
   MIP.logos = new Logos();
@@ -15,10 +20,14 @@ $(function() {
   MIP.notiView = new NotiView();
   MIP.finaleView = new FinaleView();
   
+  /**
+   * Query local storage and initialize whatever logo is next in line
+   * 
+   */
   MIP.canvasView.initLogo();
   
   /**
-   * Search for tweets every five seconds
+   * Search for tweets every five seconds, record num of effects, fake tweet if idle for three min
    * 
    */
   window.setInterval(function() {
@@ -26,18 +35,10 @@ $(function() {
     if (MIP.logos.numEffects >= 10) {
       MIP.finaleView.show();
     }
-    if (new Date().getTime() - MIP.tweets.getTweetTime() >= 59000) {
+    if (new Date().getTime() - MIP.tweets.getTweetTime() >= 180000) {
       MIP.tweets.fakeIt();
     }
   }, 5000);
-  
-  
-  /**
-   * Debug tools
-   * 
-   */
-  //localStorage.clear(); // erases logos from storage
-  
   
 });
 

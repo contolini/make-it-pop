@@ -129,35 +129,28 @@ CanvasView.prototype.updateLogo = function(command) {
        * Background effects
        * 
        */
-      case 'galaxy': // futuristic
-        self.setBackground('bg fullscreen galaxy');
-        break;
         
       case 'paper': // eco
-        self.setBackground('bg fullscreen paper');
+        self.setBackground('paper');
         break;
         
-      case 'supermodel': // hip
-        self.setBackground('bg fullscreen supermodel');
+      case 'supermodel':
+        self.setBackground('supermodel');
         break;
         
-      case 'lebron': // hip
-        self.setBackground('bg fullscreen lebron');
+      case 'lebron':
+        self.setBackground('lebron');
         break;
         
-      case 'icp': // hip
-        self.setBackground('bg fullscreen icp');
-        break;
-        
-      case 'sparkle': // hip
-        self.setBackground('bg tile sparkle');
+      case 'rainbow-smoke':
+        self.setBackground('rainbow-smoke');
         break;
         
       /**
        * Masking effects
        * 
        */
-      case 'neon':  // hip
+      case 'neon': 
         self.setMask('neon');
         break;
         
@@ -169,16 +162,28 @@ CanvasView.prototype.updateLogo = function(command) {
         self.setMask('grass');
         break;
         
-      case 'bw': // hip
+      case 'bw':
         self.setMask('bw');
-        //self.setBackground('bg fullscreen bw');
+        break;
+        
+      case 'galaxy':
+        self.setMask('galaxy');
+        break;
+        
+      case 'gold':
+        self.setMask('gold');
+        break;
+        
+      case 'white-on-rainbow':
+        self.setMask('white');
+        self.setBackground('hip');
         break;
         
        /**
        * Rotation effects
        * 
        */
-      case 'rotate45':  // hip
+      case 'rotate45': 
         self.rotateLogo(img, 45);
         break;
         
@@ -190,7 +195,7 @@ CanvasView.prototype.updateLogo = function(command) {
         self.rotateLogo(img, 225);
         break;
         
-      case 'rotate270': // hip
+      case 'rotate270':
         self.rotateLogo(img, 270);
         break;
         
@@ -198,50 +203,142 @@ CanvasView.prototype.updateLogo = function(command) {
        * Foreground image effects
        * 
        */
-      case 'balloons':  // hip
+      case 'balloons': 
         self.overlayImage('balloons');
         break;
         
-      case 'cat':  // hip
+      case 'cat': 
         self.overlayImage('cat');
         break;
         
-      case 'unicorn':  // hip
+      case 'unicorn': 
         self.overlayImage('unicorn');
         break;
         
-      case 'unicorn2':  // hip
+      case 'unicorn2': 
         self.overlayImage('unicorn2');
         break;
         
-      case 'eagle':  // hip
+      case 'eagle': 
         self.overlayImage('eagle');
         break;
         
-      case 'cat-star':  // hip
+      case 'cat-star': 
         self.overlayImage('cat-star');
         break;
         
-      case 'flower':  // hip
+      case 'flower': 
         self.overlayImage('flower');
         break;
         
-      case 'butterfly':  // hip
+      case 'butterfly': 
         self.overlayImage('butterfly');
         break;
         
-      case 'bow':  // hip
+      case 'bow': 
         self.overlayImage('bow');
         break;
         
-      case 'rainbow':  // hip
+      case 'rainbow': 
         self.overlayImage('rainbow');
         break;
         
-      case 'fireworks':  // hip
+      case 'fireworks': 
         self.overlayImage('fireworks');
         break;
         
+      case 'icp': 
+        self.overlayImage('icp');
+        break;
+        
+      case 'roses': 
+        self.overlayImage('roses');
+        break;
+        
+      case 'hearts': 
+        self.overlayImage('hearts');
+        break;
+        
+      case 'stars': 
+        self.overlayImage('stars');
+        break;
+        
+      case 'alien': 
+        self.overlayImage('alien');
+        break;
+        
+      case 'cat': 
+        self.overlayImage('cat');
+        break;
+        
+      case 'cat2': 
+        self.overlayImage('cat2');
+        break;
+        
+      case 'grandparents': 
+        self.overlayImage('grandparents');
+        break;
+        
+      case 'recycle': 
+        self.overlayImage('recycle');
+        break;
+        
+      case 'dolphins': 
+        self.overlayImage('dolphins');
+        break;
+        
+      case 'shapes': 
+        self.overlayImage('shapes');
+        break;
+        
+      case 'bling': 
+        self.overlayImage('bling');
+        break;
+        
+      case 'splatter': 
+        self.overlayImage('splatter');
+        break;
+        
+      case 'splatter2': 
+        self.overlayImage('splatter2');
+        break;
+        
+      /**
+       * Tile and center foreground image effects
+       * 
+       */
+      case 'sparkle':
+        self.setForeground('tile sparkle');
+        break;
+        
+      case 'frame':
+        self.setForeground('center frame');
+        break;
+        
+      case 'loading':
+        self.setForeground('center loading');
+        break;
+        
+      case 'loading':
+        self.setForeground('center mustache');
+        break;
+        
+      case 'glare':
+        self.setForeground('center glare');
+        break;
+        
+      case 'tile-logo':
+        self.setForeground('tile logo');
+        break;
+        
+      /**
+       * Bottom border image effects
+       * 
+       */
+      case 'flames':
+        self.overlayBorder('flames');
+        break;
+
       default:
         console.log("error: effect switch defaulted");
     }
@@ -261,7 +358,6 @@ CanvasView.prototype.updateLogo = function(command) {
  * Overlay images onto the logo
  * 
  */
- 
 CanvasView.prototype.overlayImage = function(fgEffect) {
   
   var img = new Image();
@@ -281,6 +377,39 @@ CanvasView.prototype.overlayImage = function(fgEffect) {
   }
   
   $('body').append(img);
+
+};
+
+/**
+ * Overlay a border onto the bottom of the screen
+ * 
+ */
+CanvasView.prototype.overlayBorder = function(borderImage) {
+  
+  var div = document.createElement('div');
+  
+  $(div).addClass('fg border ' + borderImage);
+  
+  $('body').append(div);
+
+};
+
+/**
+ * Set a centered or tiled foreground image
+ * 
+ */
+CanvasView.prototype.setForeground = function(imageClasses) {
+
+  if (imageClasses === 'tile logo') {
+    var img = this.canvas.toDataURL();
+    console.log(img);
+  }
+  
+  var div = document.createElement('div');
+  
+  $(div).addClass('fg ' + imageClasses).css('background-image', 'url(' + img + ')');
+  
+  $('body').append(div);
 
 };
 
@@ -321,7 +450,7 @@ CanvasView.prototype.rotateLogo = function(logo, angle) {
  */
 CanvasView.prototype.setBackground = function(bgClass) {
 
-  $('body').removeClass().addClass(bgClass);
+  $('body').removeClass().addClass('bg fullscreen ' + bgClass);
   
 };
 
@@ -351,8 +480,20 @@ CanvasView.prototype.setMask = function(mask) {
       maskImg = 'assets/images/effects/mask_grass.jpg';
       break;
       
+    case 'galaxy':
+      maskImg = 'assets/images/effects/mask_galaxy.jpg';
+      break;
+      
+    case 'white':
+      maskImg = 'assets/images/effects/mask_white.gif';
+      break;
+      
+    case 'gold':
+      maskImg = 'assets/images/effects/mask_gold.png';
+      break;
+      
     default:
-      maskImg = 'assets/images/effects/bg_galaxy.png';
+      maskImg = 'assets/images/effects/mask_galaxy.png';
   
   }
   

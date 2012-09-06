@@ -83,7 +83,7 @@ Tweets.prototype.parseData = function(data) {
  */
 Tweets.prototype.fakeIt = function() {
 
-  var command = this.commands[Math.floor(Math.random()*this.commands.length)];
+  var command = this.commands[Math.floor(Math.random()*(this.commands.length-1))];
 
   var fakeTweet = {
     command: command,
@@ -154,43 +154,43 @@ Tweets.prototype.chooseEffect = function(tweet) {
   switch (tweet.command) {
   
     case "pizzaz":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
+      effects = ['sparkle', 'flames', 'sun-beam', 'cat-star', 'icp'];
       break;
       
     case "pizzazz":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
+      effects = ['sparkle', 'flames', 'sun-beam', 'cat-star', 'icp'];
       break;
       
     case "timeless":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
+      effects = ['frame', 'loading', 'mustache', 'roses'];
       break;
       
     case "jazz it up":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
+      effects = ['neon', 'rainbow-smoke', 'unicorn', 'unicorn2', 'hearts', 'star', 'bow'];
       break;
       
     case "futuristic":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
+      effects = ['galaxy', 'alien'];
       break;
       
     case "friendly":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
+      effects = ['blur', 'cat', 'cat2', 'balloons', 'grandparents'];
       break;
       
     case "eco":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
+      effects = ['grass', 'paper', 'recycle', 'dolphins'];
       break;
       
     case "hip":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
+      effects = ['white-on-rainbow', 'tile-logo', 'shapes', 'noise'];
       break;
       
     case "slick":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
+      effects = ['rotate45', 'glare', 'gold', 'bling'];
       break;
     
     case "artsy":
-      effects = ['icp', 'lebron', 'supermodel', 'noise', 'galaxy', 'cat', 'flipv', 'unicorn', 'neon', 'grass', 'rotate45', 'balloons', 'rainbow'];
+      effects = ['splatter', 'splatter2'];
       break;
       
     case "in your face":
@@ -376,8 +376,7 @@ function Images() {
   this.dir = '/assets/images/effects/';
   this.list = [
     {name: 'fg_balloons.png', effect: 'balloons'},
-    {name: 'fg_balloons2.png', effect: 'balloons2'},
-    {name: 'fg_bow.png', effect: 'bow'},
+    {name: 'fg_bow.gif', effect: 'bow'},
     {name: 'fg_butterfly.png', effect: 'butterfly'},
     {name: 'fg_cat-star.png', effect: 'cat-star'},
     {name: 'fg_cat.png', effect: 'cat'},
@@ -387,7 +386,22 @@ function Images() {
     {name: 'fg_unicorn.gif', effect: 'unicorn'},
     {name: 'fg_unicorn2.gif', effect: 'unicorn2'},
     {name: 'fg_rainbow.gif', effect: 'rainbow'},
-    {name: 'fg_fireworks.gif', effect: 'fireworks'}
+    {name: 'fg_fireworks.gif', effect: 'fireworks'},
+    {name: 'fg_icp.png', effect: 'icp'},
+    {name: 'fg_roses.gif', effect: 'roses'},
+    {name: 'fg_hearts.gif', effect: 'hearts'},
+    {name: 'fg_stars.gif', effect: 'stars'},
+    {name: 'fg_alient.gif', effect: 'alien'},
+    {name: 'fg_cat.gif', effect: 'cat'},
+    {name: 'fg_cat2.gif', effect: 'cat2'},
+    {name: 'fg_grandparents.png', effect: 'grandparents'},
+    {name: 'fg_recycle.png', effect: 'recycle'},
+    {name: 'fg_dolphins.gif', effect: 'dolphins'},
+    {name: 'fg_shapes.gif', effect: 'shapes'},
+    {name: 'fg_bling.gif', effect: 'bling'},
+    {name: 'fg_glare.png', effect: 'glare'},
+    {name: 'fg_splatter.png', effect: 'splatter'},
+    {name: 'fg_splatter2.png', effect: 'splatter2'}
   ];
 
 }
