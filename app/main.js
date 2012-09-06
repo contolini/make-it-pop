@@ -30,10 +30,11 @@ $(function() {
    * Search for tweets every five seconds, record num of effects, fake tweet if idle for three min
    * 
    */
-  window.setInterval(function() {
+  var checkTweets = window.setInterval(function() {
     MIP.tweets.getData();
     if (MIP.logos.numEffects >= 10) {
       MIP.finaleView.show();
+      clearInterval(checkTweets);
     }
     if (new Date().getTime() - MIP.tweets.getTweetTime() >= 180000) {
       MIP.tweets.fakeIt();

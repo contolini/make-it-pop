@@ -96,6 +96,12 @@ CanvasView.prototype.updateLogo = function(command) {
         self.redrawLogo(logo);
         break;
         
+      case 'glow':
+        logo = Pixastic.process(img, "brightness", {brightness:90,contrast:0.5});
+        logo = Pixastic.process(img, "glow", {amount:1.0,radius:1.0});
+        self.redrawLogo(logo);
+        break;
+        
       case 'invert':
         logo = Pixastic.process(img, "invert");
         self.redrawLogo(logo);
@@ -449,7 +455,6 @@ CanvasView.prototype.setForeground = function(imageClasses) {
 
   if (imageClasses === 'tile logo') {
     var img = this.canvas.toDataURL();
-    console.log(img);
   }
   
   var div = document.createElement('div');
@@ -536,7 +541,7 @@ CanvasView.prototype.setMask = function(mask) {
       break;
       
     case 'gold':
-      maskImg = 'assets/images/effects/mask_gold.png';
+      maskImg = 'assets/images/effects/mask_gold.jpg';
       break;
       
     case 'distressed':
@@ -658,7 +663,6 @@ NotiView.prototype.addNotification = function(tweet) {
  * Debugging functionality
  * 
  */
-
 function DebugView() {
 
 };
@@ -670,10 +674,9 @@ DebugView.prototype.pushMsg = function(msg) {
 
 
 /**
- * Animated client functionality
+ * Stuff to do when a logo is finished
  * 
  */
-
 function FinaleView() {
 
   var img = new Image();
@@ -687,15 +690,34 @@ function FinaleView() {
 
 };
 
+/**
+ * Animated client functionality
+ * 
+ */
 FinaleView.prototype.show = function() {
-  
+    
   $('img.client').animate({
     'bottom': '0px'
   });
   
-  window.setInterval(function() {
-    window.location.reload();
-  }, 5000);
+  if (Math.floor(Math.random() * 4) == 3) {
+  
+    var div = document.createElement('div');
+    $(div).addClass('fg splash');
+    
+    window.setTimeout(function() {
+      $('body').append(div);
+      window.setTimeout(function() {
+        window.location.reload();
+      }, 8000);
+    }, 8000);
+    
+  } else {
+  
+    window.setTimeout(function() {
+      window.location.reload();
+    }, 8000);
+    
+  }
   
 };
-

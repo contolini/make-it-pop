@@ -170,7 +170,7 @@ Tweets.prototype.chooseEffect = function(tweet) {
       break;
       
     case "futuristic":
-      effects = ['galaxy', 'alien', 'pixelate'];
+      effects = ['galaxy', 'alien'];
       break;
       
     case "friendly":
@@ -296,6 +296,7 @@ function Logos() {
     {name: 'logo_wwf.png', used: 0}
   ];
   this.numEffects = 0;    // number of effects that have been performed on the current logo
+  this.numLogos = 1;      // number of logos that have been shown
 }
 
 /**

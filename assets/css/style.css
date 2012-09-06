@@ -80,6 +80,19 @@ canvas {
   filter: FlipH;
 }
 
+.fg.splash {
+  -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	z-index: 999;
+	width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-image: url('/assets/images/effects/fg_splash.jpg')
+}
+
 .fg.sparkle {background-image: url('/assets/images/effects/tile_sparkle.gif')}
 .fg.frame {background-image: url('/assets/images/effects/fg_frame.png')}
 .fg.loading {background-image: url('/assets/images/effects/fg_loading.gif')}
