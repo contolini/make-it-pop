@@ -31,6 +31,7 @@ Logos are placed on a canvas element and manipulated based on commands received 
 ### futuristic
 * galaxy
 * alien
+* sharpen
       
 ### friendly
 * blur

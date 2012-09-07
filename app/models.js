@@ -170,7 +170,7 @@ Tweets.prototype.chooseEffect = function(tweet) {
       break;
       
     case "futuristic":
-      effects = ['galaxy', 'alien'];
+      effects = ['galaxy', 'alien', 'sharpen'];
       break;
       
     case "friendly":
