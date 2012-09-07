@@ -62,7 +62,6 @@ Logos are placed on a canvas element and manipulated based on commands received 
 * splatter
 * splatter2
 * distressed
-* eagle
       
 ### in your face
 * burst

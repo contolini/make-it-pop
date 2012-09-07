@@ -190,7 +190,7 @@ Tweets.prototype.chooseEffect = function(tweet) {
       break;
     
     case "artsy":
-      effects = ['splatter', 'splatter2', 'distressed', 'eagle'];
+      effects = ['splatter', 'splatter2', 'distressed'];
       break;
       
     case "in your face":
