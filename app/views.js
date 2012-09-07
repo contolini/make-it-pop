@@ -397,9 +397,9 @@ CanvasView.prototype.dropShadow = function() {
   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   this.context.translate((logo.width / 2), (logo.height / 2));
   this.context.shadowColor = 'black';
-  this.context.shadowBlur = 20;
-  this.context.shadowOffsetX = 5;
-  this.context.shadowOffsetY = 10;
+  this.context.shadowBlur = 25;
+  this.context.shadowOffsetX = 10;
+  this.context.shadowOffsetY = 15;
   var x = (this.canvas.width / 2) - (logo.width / 2);
   var y = (this.canvas.height / 2) - (logo.height / 2);
   this.context.drawImage(logo, -(logo.width / 2), -(logo.height / 2));
@@ -680,11 +680,11 @@ DebugView.prototype.pushMsg = function(msg) {
 function FinaleView() {
 
   var img = new Image();
-  
-  img.src = MIP.images.dir + 'client1.png';
+  var num = (Math.floor(Math.random() * 4) + 1);
+  img.src = MIP.images.dir + 'client' + num + '.png';
   
   $(img).addClass('client');
-  $(img).css({'bottom': '-530px', 'left': '10px'});
+  $(img).css({'bottom': '-530px', 'left': '0'});
   
   $('body').append(img);
 
@@ -706,7 +706,7 @@ FinaleView.prototype.show = function() {
     $(div).addClass('fg splash');
     
     window.setTimeout(function() {
-      $('body').append(div);
+      $('body').append(div).fadeIn();
       window.setTimeout(function() {
         window.location.reload();
       }, 8000);

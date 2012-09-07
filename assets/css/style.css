@@ -26,6 +26,10 @@ canvas {
   left: 10px;
 }
 
+.hidden {
+  display: none;
+}
+
 /* backgrounds */
 
 .bg {
