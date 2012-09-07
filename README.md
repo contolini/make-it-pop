@@ -7,64 +7,64 @@ Logos are placed on a canvas element and manipulated based on commands received 
 ## Commands and their effects
 
 ### pizzaz/pizzazz
-sparkle
-flames
-sunbeam
-cat-star
-icp
+* sparkle
+* flames
+* sunbeam
+* cat-star
+* icp
       
 ### timeless
-frame
-loading
-mustache
-roses
+* frame
+* loading
+* mustache
+* roses
       
 ### jazz it up
-neon
-rainbow-smoke
-unicorn
-unicorn2
-hearts
-star
-bow
+* neon
+* rainbow-smoke
+* unicorn
+* unicorn2
+* hearts
+* star
+* bow
       
 ### futuristic
-galaxy
-alien
+* galaxy
+* alien
       
 ### friendly
-blur
-cat
-cat2
-balloons
-grandparents
+* blur
+* cat
+* cat2
+* balloons
+* grandparents
       
 ### eco
-grass
-paper
-recycle
-dolphins
+* grass
+* paper
+* recycle
+* dolphins
       
 ### hip
-white-on-rainbow
-tile-logo
-shapes
-noise
+* white-on-rainbow
+* tile-logo
+* shapes
+* noise
       
 ### slick
-rotate45
-glare
-gold
-bling
+* rotate45
+* glare
+* gold
+* bling
     
 ### artsy
-splatter
-splatter2
-distressed
-eagle
+* splatter
+* splatter2
+* distressed
+* eagle
       
 ### in your face
-burst
-eagle
-illusion
-shadow
+* burst
+* eagle
+* illusion
+* shadow
