@@ -282,8 +282,8 @@ CanvasView.prototype.updateLogo = function(command) {
         self.overlayImage('hearts');
         break;
         
-      case 'stars': 
-        self.overlayImage('stars');
+      case 'star': 
+        self.overlayImage('star');
         break;
         
       case 'alien': 

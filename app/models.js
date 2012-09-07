@@ -391,7 +391,7 @@ function Images() {
     {name: 'fg_icp.png', effect: 'icp'},
     {name: 'fg_roses.gif', effect: 'roses'},
     {name: 'fg_hearts.gif', effect: 'hearts'},
-    {name: 'fg_stars.gif', effect: 'stars'},
+    {name: 'fg_stars.gif', effect: 'star'},
     {name: 'fg_alien.png', effect: 'alien'},
     {name: 'fg_cat.gif', effect: 'cat'},
     {name: 'fg_cat2.gif', effect: 'cat2'},
