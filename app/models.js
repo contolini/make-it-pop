@@ -1,6 +1,6 @@
 /**
  * Tweets pulls and parses Twitter search results for commands
- * @param url: url of Twitter JSON
+ * @param hashtag: hashtag we'll query Twitter for
  */
 function Tweets(hashtag) {
   this.hashtag = hashtag;
