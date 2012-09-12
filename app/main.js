@@ -7,23 +7,21 @@ var MIP = MIP || {};
 $(function() {
 
   /**
-   * Debug tools
+   * Optional debug view
    * 
    */
   MIP.debugView = new DebugView();
-  //localStorage.clear(); // erases logos from storage
 
+  /**
+   * Initialize everything
+   * 
+   */
   MIP.tweets = new Tweets('bnc');
   MIP.logos = new Logos();
   MIP.images = new Images();
   MIP.canvasView = new CanvasView('canvas');
   MIP.notiView = new NotiView();
   MIP.finaleView = new FinaleView();
-  
-  /**
-   * Query local storage and initialize whatever logo is next in line
-   * 
-   */
   MIP.canvasView.initLogo();
   
   /**
