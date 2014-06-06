@@ -2,6 +2,8 @@
 
 A Twitter visualization for the 2012 Brand New Conference afterparty in NYC.
 
+![Make it pop!](http://contolini.net/img/make-it-pop/hero.jpg)
+
 Logos are placed on a canvas element and manipulated by commands received via Twitter. JavaScript pulls and parses Twitter search results, using HTML5 local storage for DB needs.
 
 ## Deployment
